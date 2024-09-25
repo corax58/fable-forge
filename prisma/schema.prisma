@@ -62,3 +62,41 @@ model VerificationRequest {
 
   @@unique([identifier, token])
 }
+
+model Story {
+  id             String   @id @default(cuid())
+  title          String
+  description    String?   @db.Text
+  imageLink      String?
+  primaryColor   String?
+  secondaryColor String?
+  status         Status   @default(InProgress)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+enum Status {
+  InProgress
+  Completed
+}
+
+model Node {
+  id        String  @id @default(cuid())
+  title     String
+  text      String?  @db.Text
+  imageLink String?
+
+  // previousId String?     // Reference to the previous node's ID (optional)
+
+  // // Relation to the previous node (self-relation)
+  // previous   Node?    @relation("PreviousRelation", fields: [previousId], references: [id])
+
+  // // Reverse relation for the 'previous' field (nodes where this node is the previous)
+  // previousNodes Node[] @relation("PreviousRelation")
+
+  // Relation to the next nodes (self-relation)
+  nextNodes Node[] @relation("NextRelation")
+
+  // Reverse relation for the 'nextNodes' field
+  nextOf Node[] @relation("NextRelation")
+}
