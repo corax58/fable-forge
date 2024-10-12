@@ -9,7 +9,7 @@ const NavBar = () => {
           Fable Forge
         </Link>
         <div className=" flex space-x-5">
-          <Link href={"/create-story"}>Create Story</Link>
+          <Link href={"/my-stories"}>My Stories</Link>
           <Link href={"/browse-stories"}>Browse Stories</Link>
         </div>
       </div>

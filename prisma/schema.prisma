@@ -66,8 +66,8 @@ model VerificationRequest {
 model Story {
   id             String   @id @default(cuid())
   title          String
-  description    String?   @db.Text
-  imageLink      String?
+  description    String?  @db.Text
+  imageUrl       String?
   primaryColor   String?
   secondaryColor String?
   status         Status   @default(InProgress)
@@ -83,7 +83,7 @@ enum Status {
 model Node {
   id        String  @id @default(cuid())
   title     String
-  text      String?  @db.Text
+  text      String? @db.Text
   imageLink String?
 
   // previousId String?     // Reference to the previous node's ID (optional)
