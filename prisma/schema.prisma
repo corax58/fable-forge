@@ -66,7 +66,7 @@ model VerificationRequest {
 model Story {
   id             String   @id @default(cuid())
   title          String
-  description    String?  @db.Text
+  description    String  @db.Text
   imageUrl       String?
   primaryColor   String?
   secondaryColor String?
@@ -85,15 +85,7 @@ model Node {
   title     String
   text      String? @db.Text
   imageLink String?
-
-  // previousId String?     // Reference to the previous node's ID (optional)
-
-  // // Relation to the previous node (self-relation)
-  // previous   Node?    @relation("PreviousRelation", fields: [previousId], references: [id])
-
-  // // Reverse relation for the 'previous' field (nodes where this node is the previous)
-  // previousNodes Node[] @relation("PreviousRelation")
-
+  firstNode Boolean @default(false)
   // Relation to the next nodes (self-relation)
   nextNodes Node[] @relation("NextRelation")
 

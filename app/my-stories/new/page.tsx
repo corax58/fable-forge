@@ -5,15 +5,19 @@ import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import SimpleMDE from "react-simplemde-editor";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import UploadWidget from "./components/UploadWidget";
-import { useCreateStroy } from "../hooks/useCreateStory";
-import ColorPicker from "../components/ColorPicker";
-import StoryIntroPreview from "../components/StoryIntroPreview";
+import UploadWidget from "../_components/UploadWidget";
+import { useCreateStroy } from "../../hooks/useCreateStory";
+import {
+  Spinner,
+  ColorPicker,
+  StoryIntroPreview,
+  ErrorMessage,
+} from "../../components";
 
 const CreateStoryPage = () => {
   const [imageUrl, setImageUrl] = useState<string>();
 
-  const formElementClassName = " flex space-y-1 flex-col";
+  const formElementClassName = " flex space-y-2 flex-col  ";
   const createStory = useCreateStroy();
 
   const handleImage = (imageUrl: string) => {
@@ -38,7 +42,7 @@ const CreateStoryPage = () => {
   } = useForm<Story>({
     defaultValues: {
       primaryColor: "#ffffff",
-      secondaryColor: "#111111",
+      secondaryColor: "#000000",
     },
   });
 
@@ -50,7 +54,6 @@ const CreateStoryPage = () => {
     };
     createStory.mutate(output);
   };
-  console.table(watch());
 
   return (
     <div className="flex ">
@@ -64,8 +67,15 @@ const CreateStoryPage = () => {
             id="title"
             placeholder=""
             className="input-bordered input input-md  "
-            {...register("title", { required: true })}
+            {...register("title", {
+              required: "Title is required",
+              minLength: {
+                value: 3,
+                message: "The title must be longer than 3 characters",
+              },
+            })}
           />
+          {errors.title && <ErrorMessage text={errors.title.message!} />}
         </div>
         <div className={"flex space-x-4"}>
           <div>
@@ -94,31 +104,39 @@ const CreateStoryPage = () => {
               handleColor={handleColor}
               isPrimary={true}
               label={"Primary Color"}
-              defaultColor="#111111"
+              defaultColor="#ffffff"
             />
             <ColorPicker
               handleColor={handleColor}
               isPrimary={false}
               label="Secondary Color"
-              defaultColor="#ffffff"
+              defaultColor="#000000"
             />
           </div>
         </div>
         <div className={formElementClassName}>
-          <label htmlFor="">Description</label>
+          <label htmlFor="description">Description</label>
           <Controller
             control={control}
             name={"description"}
-            render={({ field }) => <SimpleMDE onChange={field.onChange} />}
+            rules={{
+              required: "Description is required",
+            }}
+            render={({ field }) => (
+              <SimpleMDE
+                {...field}
+                id="description"
+                onChange={field.onChange}
+              />
+            )}
           />
+          {errors.description && (
+            <ErrorMessage text={errors.description.message!} />
+          )}
         </div>
 
-        <button className=" btn btn-secondary">
-          {createStory.isPending ? (
-            <p>Creating Story...</p>
-          ) : (
-            <p>Create Story</p>
-          )}
+        <button className=" btn btn-secondary" disabled={createStory.isPending}>
+          {createStory.isPending ? <Spinner /> : <p>Create Story</p>}
         </button>
       </form>
       <StoryIntroPreview story={watch()} />
