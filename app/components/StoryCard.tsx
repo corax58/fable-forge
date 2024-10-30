@@ -1,33 +1,36 @@
 import { Story } from "@prisma/client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-const StoryCard = () => {
-  const story = {
-    title: "demo story",
-    description: "this is a demo story",
-    imageUrl:
-      "https://t4.ftcdn.net/jpg/02/66/72/41/360_F_266724172_Iy8gdKgMa7XmrhYYxLCxyhx6J7070Pr8.jpg",
-    author: "corax",
-  };
+interface Props {
+  story: Story;
+}
+
+const StoryCard = ({ story }: Props) => {
   return (
-    <div className="w-52 h-56 bg-slate-100 shadow-md rounded-2xl p-4 space-y-5">
-      <div>
-        <img
-          src={story.imageUrl}
-          alt={"story image"}
-          width={300}
-          height={200}
-          className=" rounded-xl h-full"
-        />
+    <Link href={`/stories/${story.id}`}>
+      <div className=" w-64 h-66  shadow-md  p-4 space-y-2 hover:bg-slate-100 hover:scale-105">
+        <div>
+          <img
+            src={story.imageUrl!}
+            alt={"story image"}
+            width={300}
+            height={200}
+            className=" rounded-xl h-full"
+          />
+        </div>
+        <div className=" truncate  ">
+          <p className="text-lg  ">{story.title}</p>
+          <p className=" font-light text-sm">
+            by <span className=" underline ">{"User"}</span>
+          </p>
+          <div className=" w-full flex justify-end">
+            <div>Completed</div>
+          </div>
+        </div>
       </div>
-      <div className=" space-y-2">
-        <p className="text-lg">{story.title}</p>
-        <p>
-          by <span className=" underline">{story.author}</span>
-        </p>
-      </div>
-    </div>
+    </Link>
   );
 };
 

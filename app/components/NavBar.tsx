@@ -10,7 +10,7 @@ const NavBar = () => {
         </Link>
         <div className=" flex space-x-5">
           <Link href={"/my-stories"}>My Stories</Link>
-          <Link href={"/browse-stories"}>Browse Stories</Link>
+          <Link href={"/stories"}>Browse Stories</Link>
         </div>
       </div>
       <div>Login</div>
