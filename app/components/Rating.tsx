@@ -34,7 +34,7 @@ const ReviewBar = ({
   return (
     <div className=" flex items-center gap-2">
       <p>{starNumber}</p>
-      <div className=" w-full bg-gray-300 h-2 rounded-full">
+      <div className=" w-full bg-gray-200 h-2 rounded-full">
         <div
           className={`h-full rounded-full bg-yellow-400 `}
           style={{

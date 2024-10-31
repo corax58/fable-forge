@@ -6,15 +6,12 @@ import prisma from "@/prisma/db";
 const MyStoriesPage = async () => {
   const stories = await prisma.story.findMany();
 
-  console.log(stories);
   return (
-    <div className=" w-full px-16 pt-10 flex gap-5 ">
+    <div className=" grid  grid-cols-4 gap-5 w-full ">
       <CreateStory />
-      <div>
-        {stories.map((story) => (
-          <StoryCard story={story} />
-        ))}
-      </div>
+      {stories.map((story) => (
+        <StoryCard story={story} />
+      ))}
     </div>
   );
 };

@@ -6,6 +6,8 @@ import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { TbHierarchy3 } from "react-icons/tb";
 import { LiaStarSolid } from "react-icons/lia";
 import Rating from "@/app/components/Rating";
+import DeleteStory from "@/app/components/DeleteStory";
+import Link from "next/link";
 
 interface Props {
   params: {
@@ -31,14 +33,14 @@ const StoryPage = async ({ params }: Props) => {
             <TbHierarchy3 />
             Node editor
           </button>
-          <button className="btn btn-wide text-lg">
+          <Link
+            href={`/stories/${Story.id}/edit`}
+            className="btn btn-wide text-lg"
+          >
             <FaRegEdit />
             Edit
-          </button>
-          <button className="btn btn-error btn-wide text-lg ">
-            <FaTrashAlt />
-            Delete
-          </button>
+          </Link>
+          <DeleteStory storyId={Story.id} />
         </div>
         <div className=" w-full h-px bg-slate-300"></div>
         <Rating />

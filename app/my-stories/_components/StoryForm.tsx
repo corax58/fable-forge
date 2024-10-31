@@ -6,19 +6,19 @@ import { RxCross2 } from "react-icons/rx";
 import SimpleMDE from "react-simplemde-editor";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import UploadWidget from "../_components/UploadWidget";
-import { useCreateStroy } from "../../hooks/useCreateStory";
+import { useUpdateStory } from "../../hooks/stories/useUpdateStory";
 import {
   Spinner,
   ColorPicker,
   StoryIntroPreview,
   ErrorMessage,
 } from "../../components";
+import { useCreateStory } from "@/app/hooks/stories/useCreateStory";
 
 const StoryForm = ({ Story }: { Story?: Story }) => {
-  const [imageUrl, setImageUrl] = useState<string>();
-
   const formElementClassName = " flex space-y-2 flex-col  ";
-  const createStory = useCreateStroy();
+  const createStory = useCreateStory();
+  const updateStory = useUpdateStory({ storyId: Story?.id });
 
   const handleImage = (imageUrl: string) => {
     setValue("imageUrl", imageUrl);
@@ -32,30 +32,31 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
     }
   };
 
+  const defaultValues = Story
+    ? Story
+    : {
+        primaryColor: "#ffffff",
+        secondaryColor: "#000000",
+      };
+
   const {
     control,
     register,
     handleSubmit,
     watch,
     setValue,
-    formState: { errors, isLoading },
+    formState: { errors },
   } = useForm<Story>({
-    defaultValues: {
-      primaryColor: "#ffffff",
-      secondaryColor: "#000000",
-    },
+    defaultValues,
   });
 
   const onSubmit: SubmitHandler<Story> = async (data, e) => {
     e?.preventDefault();
-    const output = {
-      ...data,
-      imagePublicId: imageUrl,
-    };
-    createStory.mutate(output);
+    Story ? updateStory.mutate(data) : createStory.mutate(data);
   };
+
   return (
-    <div className="flex ">
+    <div className="flex gap-5 ">
       <form
         className="  w-1/2 pb-10   flex flex-col space-y-3 "
         onSubmit={handleSubmit(onSubmit)}
@@ -103,13 +104,13 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
               handleColor={handleColor}
               isPrimary={true}
               label={"Primary Color"}
-              defaultColor="#ffffff"
+              defaultColor={Story ? Story.primaryColor! : "#ffffff"}
             />
             <ColorPicker
               handleColor={handleColor}
               isPrimary={false}
               label="Secondary Color"
-              defaultColor="#000000"
+              defaultColor={Story ? Story.secondaryColor! : "#000000"}
             />
           </div>
         </div>
@@ -134,11 +135,19 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
           )}
         </div>
 
-        <button className=" btn btn-secondary" disabled={createStory.isPending}>
-          {createStory.isPending ? <Spinner /> : <p>Create Story</p>}
+        <button className=" btn btn-secondary" disabled={updateStory.isPending}>
+          {updateStory.isPending || createStory.isPending ? (
+            <Spinner />
+          ) : Story ? (
+            <p>Edit Story</p>
+          ) : (
+            <p>Create Story</p>
+          )}
         </button>
       </form>
-      <StoryIntroPreview story={watch()} />
+      <div className="w-1/2">
+        <StoryIntroPreview story={watch()} />
+      </div>
     </div>
   );
 };
