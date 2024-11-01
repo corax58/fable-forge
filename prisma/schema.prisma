@@ -66,10 +66,11 @@ model VerificationRequest {
 model Story {
   id             String   @id @default(cuid())
   title          String
-  description    String  @db.Text
+  description    String   @db.Text
   imageUrl       String?
   primaryColor   String?
   secondaryColor String?
+  nodes          Node[]
   status         Status   @default(InProgress)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -81,14 +82,14 @@ enum Status {
 }
 
 model Node {
-  id        String  @id @default(cuid())
-  title     String
-  text      String? @db.Text
-  imageLink String?
-  firstNode Boolean @default(false)
-  // Relation to the next nodes (self-relation)
-  nextNodes Node[] @relation("NextRelation")
-
-  // Reverse relation for the 'nextNodes' field
-  nextOf Node[] @relation("NextRelation")
+  id             String  @id @default(cuid())
+  title          String
+  text           String? @db.Text
+  imageLink      String?
+  story          Story   @relation(fields: [storyId], references: [id])
+  storyId        String
+  firstNode      Boolean @default(false)
+  previousNodeId String?
+  previousNode   Node?   @relation("NodeRelation", fields: [previousNodeId], references: [id])
+  nextNodes      Node[]  @relation("NodeRelation")
 }

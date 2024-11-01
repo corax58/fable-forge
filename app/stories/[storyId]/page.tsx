@@ -29,10 +29,13 @@ const StoryPage = async ({ params }: Props) => {
       </div>
       <div className=" w-1/3 flex flex-col gap-5 items-center p-5 ">
         <div className=" flex flex-col w-full  gap-5">
-          <button className="btn btn-wide text-lg">
+          <Link
+            href={`/stories/${Story.id}/node-editor`}
+            className="btn btn-wide text-lg"
+          >
             <TbHierarchy3 />
             Node editor
-          </button>
+          </Link>
           <Link
             href={`/stories/${Story.id}/edit`}
             className="btn btn-wide text-lg"
