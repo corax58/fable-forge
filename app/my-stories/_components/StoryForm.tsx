@@ -14,9 +14,11 @@ import {
   ErrorMessage,
 } from "../../components";
 import { useCreateStory } from "@/app/hooks/stories/useCreateStory";
+import MarkDownEditor from "./MarkDownEditor";
 
 const StoryForm = ({ Story }: { Story?: Story }) => {
   const formElementClassName = " flex space-y-2 flex-col  ";
+
   const createStory = useCreateStory();
   const updateStory = useUpdateStory({ storyId: Story?.id });
 
@@ -123,11 +125,7 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
               required: "Description is required",
             }}
             render={({ field }) => (
-              <SimpleMDE
-                {...field}
-                id="description"
-                onChange={field.onChange}
-              />
+              <MarkDownEditor id="description" field={field} />
             )}
           />
           {errors.description && (

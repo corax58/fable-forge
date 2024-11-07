@@ -28,11 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="emerald">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <QueryClientProvider>
           <NavBar />
-          <main className="px-16 pt-5">{children}</main>
+          <main className=" flex flex-col px-16 pt-5 h-full w-full ">
+            {children}
+          </main>
         </QueryClientProvider>
       </body>
     </html>

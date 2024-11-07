@@ -3,7 +3,7 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <div className=" flex border-b justify-between py-3 px-16 items-center ">
+    <div className="  flex border-b justify-between py-3 px-16 items-center ">
       <div className=" flex space-x-5 items-center ">
         <Link href={"/"} className="text-xl font-semibold">
           Fable Forge

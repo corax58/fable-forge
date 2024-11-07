@@ -13,7 +13,6 @@ const DeleteStory = ({ storyId }: Props) => {
       <button
         className="btn btn-error btn-wide text-lg "
         onClick={() => {
-          console.log("hello");
           let myModal: any = document.getElementById("my_modal_2");
           myModal.showModal();
         }}
