@@ -2,10 +2,34 @@
 import MarkDownEditor from "@/app/my-stories/_components/MarkDownEditor";
 import UploadWidget from "@/app/my-stories/_components/UploadWidget";
 import { Node } from "@prisma/client";
-import React from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-const NodeForm = ({ storyId }: { storyId: string }) => {
+import React, { useEffect, useState } from "react";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useCreateNode } from "@/app/hooks/nodes/useCreateNode";
+import { ErrorMessage } from "@/app/components";
+import { boolean } from "zod";
+import { useToast } from "@/hooks/use-toast";
+
+const NodeForm = ({
+  storyId,
+  firstNode,
+}: {
+  storyId: string;
+  firstNode: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { toast } = useToast();
+
   const {
     control,
     register,
@@ -13,42 +37,69 @@ const NodeForm = ({ storyId }: { storyId: string }) => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<Node>();
+  } = useForm<Node>({
+    defaultValues: {
+      firstNode,
+      storyId,
+    },
+  });
+
+  const createNode = useCreateNode();
+  const onSubmit: SubmitHandler<Node> = async (data, e) => {
+    e?.preventDefault();
+    console.log("hello");
+    createNode.mutate(data);
+  };
+
+  useEffect(() => {
+    if (createNode.isError) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please try again.",
+      });
+    }
+  }, [createNode.isError]);
+
   return (
     <div>
-      <button
-        className="btn"
-        onClick={() => {
-          let myModal: any = document.getElementById("my_modal_3");
-          myModal.showModal();
-        }}
-      >
-        Create Node
-      </button>
-      <dialog id="my_modal_3" className="modal">
-        <form method="dialog" className="modal-box"></form>
-        <form className="modal-box flex flex-col space-y-1">
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-            ✕
-          </button>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            className=" input input-bordered input-md"
-            {...register("title", { required: "Title is required" })}
-          />
-          <label htmlFor="descriptoin">Text</label>
-          <Controller
-            control={control}
-            name={"text"}
-            rules={{
-              required: "Description is required",
-            }}
-            render={({ field }) => <MarkDownEditor id="text" field={field} />}
-          />
-          <button className="btn"> Create Node</button>
-        </form>
-      </dialog>
+      <Dialog>
+        <DialogTrigger>
+          <Button>Create Node</Button>
+        </DialogTrigger>
+        <DialogContent className=" overflow-y-scroll max-h-screen">
+          <DialogHeader>
+            <DialogTitle>Create a node</DialogTitle>
+          </DialogHeader>
+          <form
+            className="modal-box flex flex-col space-y-2 "
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <label htmlFor="title">Title</label>
+            <Input
+              type="text"
+              className=" input input-bordered input-md"
+              {...register("title", { required: "Title is required" })}
+            />
+            {errors.title && <ErrorMessage text={errors.title.message!} />}
+
+            <label htmlFor="descriptoin">Text</label>
+            <Controller
+              control={control}
+              name={"text"}
+              rules={{
+                required: "Description is required",
+              }}
+              render={({ field }) => <MarkDownEditor id="text" field={field} />}
+            />
+            {errors.text && <ErrorMessage text={errors.text.message!} />}
+
+            <Button className="btn" type="submit">
+              Create Node
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -7,3 +7,12 @@ export const storySchema = z.object({
   primaryColor: z.string().optional(),
   secondaryColor: z.string().optional(),
 });
+
+export const nodeSchema = z.object({
+  title: z.string().min(1),
+  text: z.string().optional(),
+  imageLink: z.string().optional(),
+  storyId: z.string(),
+  firstNode: z.boolean(),
+  previousNodeId: z.string().optional(),
+});

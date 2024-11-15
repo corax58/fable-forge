@@ -15,6 +15,8 @@ import {
 } from "../../components";
 import { useCreateStory } from "@/app/hooks/stories/useCreateStory";
 import MarkDownEditor from "./MarkDownEditor";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const StoryForm = ({ Story }: { Story?: Story }) => {
   const formElementClassName = " flex space-y-2 flex-col  ";
@@ -65,7 +67,7 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
       >
         <div className={formElementClassName}>
           <label htmlFor="title">Title</label>
-          <input
+          <Input
             id="title"
             placeholder=""
             className="input-bordered input input-md  "
@@ -133,7 +135,7 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
           )}
         </div>
 
-        <button className=" btn btn-secondary" disabled={updateStory.isPending}>
+        <Button className=" btn btn-secondary" disabled={updateStory.isPending}>
           {updateStory.isPending || createStory.isPending ? (
             <Spinner />
           ) : Story ? (
@@ -141,7 +143,7 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
           ) : (
             <p>Create Story</p>
           )}
-        </button>
+        </Button>
       </form>
       <div className="w-1/2">
         <StoryIntroPreview story={watch()} />

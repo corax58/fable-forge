@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { CldUploadWidget } from "next-cloudinary";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   handleImage: (public_id: string) => void;
@@ -20,9 +21,9 @@ const UploadWidget = ({ handleImage }: Props) => {
         }}
       >
         {({ open }) => (
-          <button onClick={() => open()} className=" btn">
+          <Button onClick={() => open()} className=" btn">
             Upload Image
-          </button>
+          </Button>
         )}
       </CldUploadWidget>
     </div>

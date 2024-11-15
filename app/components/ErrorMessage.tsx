@@ -5,7 +5,10 @@ interface Props {
 }
 const ErrorMessage = ({ text }: Props) => {
   return (
-    <div role="alert" className="alert alert-error">
+    <div
+      role="alert"
+      className=" flex bg-red-500 w-full space-x-2 px-4 py-2 rounded-xl items-center "
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6 shrink-0 stroke-current"

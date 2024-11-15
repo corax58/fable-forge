@@ -8,6 +8,7 @@ import { LiaStarSolid } from "react-icons/lia";
 import Rating from "@/app/components/Rating";
 import DeleteStory from "@/app/components/DeleteStory";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   params: {
@@ -29,19 +30,17 @@ const StoryPage = async ({ params }: Props) => {
       </div>
       <div className=" w-1/3 flex flex-col gap-5 items-center p-5 ">
         <div className=" flex flex-col w-full  gap-5">
-          <Link
-            href={`/stories/${Story.id}/node-editor`}
-            className="btn btn-wide text-lg"
-          >
-            <TbHierarchy3 />
-            Node editor
+          <Link href={`/stories/${Story.id}/node-editor`} className="">
+            <Button className=" w-1/2">
+              <TbHierarchy3 />
+              Node editor
+            </Button>
           </Link>
-          <Link
-            href={`/stories/${Story.id}/edit`}
-            className="btn btn-wide text-lg"
-          >
-            <FaRegEdit />
-            Edit
+          <Link href={`/stories/${Story.id}/edit`} className=" w-full ">
+            <Button className="w-1/2">
+              <FaRegEdit />
+              Edit
+            </Button>
           </Link>
           <DeleteStory storyId={Story.id} />
         </div>

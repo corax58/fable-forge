@@ -1,6 +1,6 @@
 import prisma from "@/prisma/db";
 import { NextRequest, NextResponse } from "next/server";
-import { storySchema } from "./schema";
+import { storySchema } from "../schema";
 import { request } from "http";
 
 export const GET = (request: NextRequest) => {
