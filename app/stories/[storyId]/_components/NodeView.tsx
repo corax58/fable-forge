@@ -5,15 +5,24 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import NodeForm from "../node-editor/components/NodeForm";
 import NodeNavButton from "./NodeNavButton";
+import Link from "next/link";
 
 interface Props {
   node: FetchedNodes;
 }
 const NodeView = ({ node }: Props) => {
   return (
-    <div>
+    <div className="flex w-full h-full gap-2">
+      {!node.firstNode && (
+        <Link
+          href={`/stories/${node.storyId}/node-editor?node=${node.previousNodeId}`}
+        >
+          <Button>Go Back</Button>
+        </Link>
+      )}
+
       <div
-        className=" border-2 rounded-xl p-4 flex flex-col space-y-2"
+        className="w-full h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
         style={{
           color: node.story.secondaryColor!,
           borderColor: node.story.secondaryColor!,
@@ -41,14 +50,18 @@ const NodeView = ({ node }: Props) => {
         </div>
         <div className="w-full flex justify-center items-center flex-col gap-2">
           {node.nextNodes.map((nextNode) => (
-            <NodeNavButton
-              colors={{
-                primaryColor: node.story.primaryColor!,
-                secondaryColor: node.story.secondaryColor!,
-              }}
+            <Link
+              href={`/stories/${node.storyId}/node-editor?node=${nextNode.id}`}
             >
-              {nextNode.title}
-            </NodeNavButton>
+              <NodeNavButton
+                colors={{
+                  primaryColor: node.story.primaryColor!,
+                  secondaryColor: node.story.secondaryColor!,
+                }}
+              >
+                {nextNode.title}
+              </NodeNavButton>
+            </Link>
           ))}
 
           <Button className=" rounded-full w-max ">
