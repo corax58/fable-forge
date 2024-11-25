@@ -4,22 +4,20 @@ import Image from "next/image";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 import NodeForm from "./components/NodeForm";
+import NodeView from "../_components/NodeView";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
     storyId: string;
   };
+  searchParams: {
+    node: string;
+  };
 }
 
-const NodeEditorPage = async ({ params }: Props) => {
-  const firstNode = await prisma.node.findFirst({
-    where: {
-      storyId: params.storyId,
-      firstNode: true,
-    },
-  });
-
-  if (!firstNode)
+const NodeEditorPage = async ({ params, searchParams: { node } }: Props) => {
+  if (node == "")
     return (
       <div className=" w-full  flex ">
         <div className=" flex flex-col w-full items-center  gap-10">
@@ -35,7 +33,28 @@ const NodeEditorPage = async ({ params }: Props) => {
         </div>
       </div>
     );
-  return <div>NodeEditorPage</div>;
+
+  const Node = await prisma.node.findFirst({
+    where: {
+      id: node,
+    },
+    include: {
+      nextNodes: true,
+      story: {
+        select: {
+          primaryColor: true,
+          secondaryColor: true,
+        },
+      },
+    },
+  });
+  console.log(Node);
+  if (!Node) return notFound();
+  return (
+    <div>
+      <NodeView node={Node!} />
+    </div>
+  );
 };
 
 export default NodeEditorPage;

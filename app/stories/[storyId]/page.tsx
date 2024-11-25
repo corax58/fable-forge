@@ -20,7 +20,16 @@ const StoryPage = async ({ params }: Props) => {
     where: {
       id: params.storyId,
     },
+    include: {
+      nodes: {
+        where: {
+          firstNode: true,
+        },
+      },
+    },
   });
+
+  const firstNodeId = Story?.nodes[0].id ? Story.nodes[0].id : "";
 
   if (!Story) notFound();
   return (
@@ -30,7 +39,10 @@ const StoryPage = async ({ params }: Props) => {
       </div>
       <div className=" w-1/3 flex flex-col gap-5 items-center p-5 ">
         <div className=" flex flex-col w-full  gap-5">
-          <Link href={`/stories/${Story.id}/node-editor`} className="">
+          <Link
+            href={`/stories/${Story.id}/node-editor/?node=${firstNodeId}`}
+            className=""
+          >
             <Button className=" w-1/2">
               <TbHierarchy3 />
               Node editor
