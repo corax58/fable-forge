@@ -29,7 +29,11 @@ const NodeEditorPage = async ({ params, searchParams: { node } }: Props) => {
             className=" rounded-lg"
           />
           No first node found, Start by creating the first story point.
-          <NodeForm storyId={params.storyId} firstNode></NodeForm>
+          <NodeForm
+            storyId={params.storyId}
+            firstNode
+            text={"Create first Node"}
+          ></NodeForm>
         </div>
       </div>
     );

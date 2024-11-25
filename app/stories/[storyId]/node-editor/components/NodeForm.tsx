@@ -23,9 +23,13 @@ import { useToast } from "@/hooks/use-toast";
 const NodeForm = ({
   storyId,
   firstNode,
+  text,
+  previousNodeId,
 }: {
   storyId: string;
   firstNode: boolean;
+  text: string;
+  previousNodeId?: string;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { toast } = useToast();
@@ -41,6 +45,7 @@ const NodeForm = ({
     defaultValues: {
       firstNode,
       storyId,
+      previousNodeId,
     },
   });
 
@@ -69,7 +74,7 @@ const NodeForm = ({
         </DialogTrigger>
         <DialogContent className=" overflow-y-scroll max-h-screen">
           <DialogHeader>
-            <DialogTitle>Create a node</DialogTitle>
+            <DialogTitle>{text}</DialogTitle>
           </DialogHeader>
           <form
             className="modal-box flex flex-col space-y-2 "
@@ -95,7 +100,7 @@ const NodeForm = ({
             {errors.text && <ErrorMessage text={errors.text.message!} />}
 
             <Button className="btn" type="submit">
-              Create Node
+              {text}
             </Button>
           </form>
         </DialogContent>

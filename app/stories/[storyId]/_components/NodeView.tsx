@@ -3,6 +3,8 @@ import { FetchedNodes } from "@/lib/types";
 import { Node } from "@prisma/client";
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import NodeForm from "../node-editor/components/NodeForm";
+import NodeNavButton from "./NodeNavButton";
 
 interface Props {
   node: FetchedNodes;
@@ -37,8 +39,26 @@ const NodeView = ({ node }: Props) => {
         >
           <ReactMarkdown className={" text-inherit"}>{node.text}</ReactMarkdown>
         </div>
-        <div className="w-full flex justify-center">
-          <Button className=" rounded-full">Add a Node</Button>
+        <div className="w-full flex justify-center items-center flex-col gap-2">
+          {node.nextNodes.map((nextNode) => (
+            <NodeNavButton
+              colors={{
+                primaryColor: node.story.primaryColor!,
+                secondaryColor: node.story.secondaryColor!,
+              }}
+            >
+              {nextNode.title}
+            </NodeNavButton>
+          ))}
+
+          <Button className=" rounded-full w-max ">
+            <NodeForm
+              previousNodeId={node.id}
+              storyId={node.storyId}
+              firstNode={false}
+              text="Add a node"
+            ></NodeForm>
+          </Button>
         </div>
       </div>
     </div>

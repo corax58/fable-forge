@@ -3,8 +3,8 @@ import { nodeSchema } from "../schema";
 import prisma from "@/prisma/db";
 
 export async function POST(request: NextRequest) {
-  console.log("hello");
   const data = await request.json();
+  console.log(data);
   const validation = nodeSchema.safeParse(data);
 
   if (validation.error) {
