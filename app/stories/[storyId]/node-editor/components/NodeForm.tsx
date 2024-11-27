@@ -70,7 +70,7 @@ const NodeForm = ({
     <div>
       <Dialog>
         <DialogTrigger>
-          <Button>Create Node</Button>
+          <Button className=" rounded-full px-5">Create Node</Button>
         </DialogTrigger>
         <DialogContent className=" overflow-y-scroll max-h-screen">
           <DialogHeader>

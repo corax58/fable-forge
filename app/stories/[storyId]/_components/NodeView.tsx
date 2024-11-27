@@ -6,23 +6,25 @@ import ReactMarkdown from "react-markdown";
 import NodeForm from "../node-editor/components/NodeForm";
 import NodeNavButton from "./NodeNavButton";
 import Link from "next/link";
+import { FaTrashAlt } from "react-icons/fa";
 
 interface Props {
   node: FetchedNodes;
 }
 const NodeView = ({ node }: Props) => {
   return (
-    <div className="flex w-full h-full gap-2">
-      {!node.firstNode && (
-        <Link
-          href={`/stories/${node.storyId}/node-editor?node=${node.previousNodeId}`}
-        >
-          <Button>Go Back</Button>
-        </Link>
-      )}
-
+    <div className="flex w-full h-full gap-2 justify-center">
+      <div className="flex justify-center h-96 w-1/6 ">
+        {!node.firstNode && (
+          <Link
+            href={`/stories/${node.storyId}/node-editor?node=${node.previousNodeId}`}
+          >
+            <Button>Go Back</Button>
+          </Link>
+        )}
+      </div>
       <div
-        className="w-full h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
+        className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
         style={{
           color: node.story.secondaryColor!,
           borderColor: node.story.secondaryColor!,
@@ -37,11 +39,11 @@ const NodeView = ({ node }: Props) => {
         {node.imageLink && (
           <img src={node.imageLink} alt="image" className=" rounded-2xl" />
         )}
-
         <div
           className=" h-px w-full "
           style={{ backgroundColor: node.story.secondaryColor! }}
         ></div>
+
         <div
           className=" prose  text-left"
           style={{ color: node.story.secondaryColor! }}
@@ -50,30 +52,34 @@ const NodeView = ({ node }: Props) => {
         </div>
         <div className="w-full flex justify-center items-center flex-col gap-2">
           {node.nextNodes.map((nextNode) => (
-            <Link
-              href={`/stories/${node.storyId}/node-editor?node=${nextNode.id}`}
-            >
-              <NodeNavButton
-                colors={{
-                  primaryColor: node.story.primaryColor!,
-                  secondaryColor: node.story.secondaryColor!,
-                }}
+            <div className="flex">
+              <div>
+                <FaTrashAlt />
+              </div>
+              <Link
+                href={`/stories/${node.storyId}/node-editor?node=${nextNode.id}`}
               >
-                {nextNode.title}
-              </NodeNavButton>
-            </Link>
+                <NodeNavButton
+                  colors={{
+                    primaryColor: node.story.primaryColor!,
+                    secondaryColor: node.story.secondaryColor!,
+                  }}
+                >
+                  {nextNode.title}
+                </NodeNavButton>
+              </Link>
+            </div>
           ))}
 
-          <Button className=" rounded-full w-max ">
-            <NodeForm
-              previousNodeId={node.id}
-              storyId={node.storyId}
-              firstNode={false}
-              text="Add a node"
-            ></NodeForm>
-          </Button>
+          <NodeForm
+            previousNodeId={node.id}
+            storyId={node.storyId}
+            firstNode={false}
+            text="Add a node"
+          />
         </div>
       </div>
+      <div className="h-96 w-1/6"></div>
     </div>
   );
 };
