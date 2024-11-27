@@ -90,6 +90,6 @@ model Node {
   storyId        String
   firstNode      Boolean @default(false)
   previousNodeId String?
-  previousNode   Node?   @relation("NodeRelation", fields: [previousNodeId], references: [id])
+  previousNode   Node?   @relation("NodeRelation", fields: [previousNodeId], references: [id], onDelete: Cascade)
   nextNodes      Node[]  @relation("NodeRelation")
 }

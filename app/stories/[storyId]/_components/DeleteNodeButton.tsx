@@ -27,8 +27,8 @@ const DeleteNodeButton = ({ nodeId }: { nodeId: string }) => {
         <DialogHeader>
           <DialogTitle>Confirm deletion</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this story? This action can not be
-            undone.
+            Are you sure you want to delete this node? This will delete all
+            subsequent nodes.
           </DialogDescription>
         </DialogHeader>
 
