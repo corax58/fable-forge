@@ -7,6 +7,7 @@ import NodeForm from "../node-editor/components/NodeForm";
 import NodeNavButton from "./NodeNavButton";
 import Link from "next/link";
 import { FaTrashAlt } from "react-icons/fa";
+import DeleteNodeButton from "./DeleteNodeButton";
 
 interface Props {
   node: FetchedNodes;
@@ -52,10 +53,8 @@ const NodeView = ({ node }: Props) => {
         </div>
         <div className="w-full flex justify-center items-center flex-col gap-2">
           {node.nextNodes.map((nextNode) => (
-            <div className="flex">
-              <div>
-                <FaTrashAlt />
-              </div>
+            <div className="flex gap-2 items-center">
+              <DeleteNodeButton nodeId={nextNode.id} />
               <Link
                 href={`/stories/${node.storyId}/node-editor?node=${nextNode.id}`}
               >
