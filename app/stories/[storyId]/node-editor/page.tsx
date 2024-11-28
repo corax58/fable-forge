@@ -52,7 +52,6 @@ const NodeEditorPage = async ({ params, searchParams: { node } }: Props) => {
       },
     },
   });
-  console.log(Node);
   if (!Node) return notFound();
   return (
     <div>

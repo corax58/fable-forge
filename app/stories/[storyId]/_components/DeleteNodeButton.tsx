@@ -11,8 +11,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useDeleteNode } from "@/app/hooks/nodes/useDeleteNode";
 
 const DeleteNodeButton = ({ nodeId }: { nodeId: string }) => {
+  const deleteNode = useDeleteNode();
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -37,7 +39,12 @@ const DeleteNodeButton = ({ nodeId }: { nodeId: string }) => {
             <Button type="button">Close</Button>
           </DialogClose>
           <DialogClose>
-            <Button variant={"destructive"}>Delete Node</Button>
+            <Button
+              variant={"destructive"}
+              onClick={() => deleteNode.mutate(nodeId)}
+            >
+              Delete Node
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

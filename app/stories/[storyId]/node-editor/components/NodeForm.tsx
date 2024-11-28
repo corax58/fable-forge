@@ -45,15 +45,17 @@ const NodeForm = ({
     defaultValues: {
       firstNode,
       storyId,
-      previousNodeId,
     },
   });
 
   const createNode = useCreateNode();
   const onSubmit: SubmitHandler<Node> = async (data, e) => {
     e?.preventDefault();
-    console.log("hello");
-    createNode.mutate(data);
+    if (previousNodeId) {
+      createNode.mutate({ ...data, previousNodeId: previousNodeId });
+    } else {
+      createNode.mutate(data);
+    }
   };
 
   useEffect(() => {
@@ -76,6 +78,7 @@ const NodeForm = ({
           <DialogHeader>
             <DialogTitle>{text}</DialogTitle>
           </DialogHeader>
+          <div>{previousNodeId}</div>
           <form
             className="modal-box flex flex-col space-y-2 "
             onSubmit={handleSubmit(onSubmit)}
