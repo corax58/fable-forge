@@ -16,13 +16,13 @@ const NodeView = ({ node }: Props) => {
   return (
     <div className="flex w-full h-full gap-2 justify-center">
       <div className="flex justify-center h-96 w-1/6 ">
-        {!node.firstNode && (
+        <Button disabled={node.firstNode}>
           <Link
-            href={`/stories/${node.storyId}/node-editor?node=${node.previousNodeId}`}
+            href={`/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`}
           >
-            <Button>Go Back</Button>
+            Go Back
           </Link>
-        )}
+        </Button>
       </div>
       <div
         className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
@@ -56,7 +56,7 @@ const NodeView = ({ node }: Props) => {
             <div className="flex gap-2 items-center">
               <DeleteNodeButton nodeId={nextNode.id} />
               <Link
-                href={`/stories/${node.storyId}/node-editor?node=${nextNode.id}`}
+                href={`/stories/${node.storyId}/node-editor?nodeId=${nextNode.id}`}
               >
                 <NodeNavButton
                   colors={{

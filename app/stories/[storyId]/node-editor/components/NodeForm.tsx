@@ -16,7 +16,7 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCreateNode } from "@/app/hooks/nodes/useCreateNode";
-import { ErrorMessage } from "@/app/components";
+import { ErrorMessage, Spinner } from "@/app/components";
 import { boolean } from "zod";
 import { useToast } from "@/hooks/use-toast";
 
@@ -66,11 +66,18 @@ const NodeForm = ({
         description: "Please try again.",
       });
     }
-  }, [createNode.isError]);
+    if (createNode.isSuccess) {
+      setIsOpen(false);
+      toast({
+        variant: "success",
+        title: "Node created successfully!",
+      });
+    }
+  }, [createNode.isError, createNode.isSuccess]);
 
   return (
     <div>
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger>
           <Button className=" rounded-full px-5">Create Node</Button>
         </DialogTrigger>
@@ -103,7 +110,7 @@ const NodeForm = ({
             {errors.text && <ErrorMessage text={errors.text.message!} />}
 
             <Button className="btn" type="submit">
-              {text}
+              {createNode.isPending ? <Spinner /> : text}
             </Button>
           </form>
         </DialogContent>

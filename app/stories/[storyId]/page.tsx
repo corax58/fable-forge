@@ -16,7 +16,7 @@ interface Props {
   };
 }
 const StoryPage = async ({ params }: Props) => {
-  const Story = await prisma.story.findUnique({
+  const Story = await prisma.story.findFirst({
     where: {
       id: params.storyId,
     },
@@ -29,9 +29,15 @@ const StoryPage = async ({ params }: Props) => {
     },
   });
 
-  const firstNodeId = Story?.nodes[0].id ? Story.nodes[0].id : "";
-
   if (!Story) notFound();
+
+  let firstNodeId = "";
+
+  if (Story?.nodes.length >= 1) {
+    console.log("hello");
+    firstNodeId = Story.nodes[0].id;
+  }
+  console.log("el first node", firstNodeId);
   return (
     <div className=" flex gap-5 py-5">
       <div className=" w-2/3 ">
@@ -40,7 +46,7 @@ const StoryPage = async ({ params }: Props) => {
       <div className=" w-1/3 flex flex-col gap-5 items-center p-5 ">
         <div className=" flex flex-col w-full  gap-5">
           <Link
-            href={`/stories/${Story.id}/node-editor/?node=${firstNodeId}`}
+            href={`/stories/${Story.id}/node-editor/?nodeId=${firstNodeId}`}
             className=""
           >
             <Button className=" w-1/2">

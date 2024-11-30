@@ -16,40 +16,32 @@ async function fetchQueries(query: any) {
   });
 }
 
-export async function POST(request: NextRequest, params: { nodeId: string }) {
-  const data: { isFirstNode: boolean } = await request.json();
-
-  const query = data.isFirstNode
-    ? {
-        storyId: params.nodeId,
-        firstNode: false,
-      }
-    : {
-        id: params.nodeId,
-      };
-
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { nodeId: string } }
+) {
   try {
-    const node = await fetchQueries(query);
+    const node = await prisma.node.findFirst({
+      where: {
+        id: params.nodeId,
+      },
+      include: {
+        nextNodes: true,
+        story: {
+          select: {
+            primaryColor: true,
+            secondaryColor: true,
+          },
+        },
+      },
+    });
 
     if (!node) {
-      if (data.isFirstNode) {
-        return NextResponse.json(
-          { message: "There is no first node." },
-          { status: 200 }
-        );
-      } else {
-        return NextResponse.json(
-          { message: "Node not found" },
-          { status: 404 }
-        );
-      }
+      return NextResponse.json({ error: "node not found" }, { status: 404 });
     }
 
     return NextResponse.json(node, { status: 200 });
-  } catch (error) {
-    console.log("Error fetching node:", error);
-    return NextResponse.json({ error: "Error fetching node" }, { status: 500 });
-  }
+  } catch (error) {}
 }
 
 export async function DELETE(

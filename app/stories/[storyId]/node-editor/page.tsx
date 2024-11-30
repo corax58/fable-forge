@@ -1,3 +1,4 @@
+"use client";
 import prisma from "@/prisma/db";
 import { firstNodeImage } from "@/public/image";
 import Image from "next/image";
@@ -6,18 +7,22 @@ import { FaPlus } from "react-icons/fa";
 import NodeForm from "./components/NodeForm";
 import NodeView from "../_components/NodeView";
 import { notFound } from "next/navigation";
+import { useFetchNode } from "@/app/hooks/nodes/useFetchNode";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Spinner } from "@/app/components";
 
 interface Props {
   params: {
     storyId: string;
   };
   searchParams: {
-    node: string;
+    nodeId: string;
   };
 }
 
-const NodeEditorPage = async ({ params, searchParams: { node } }: Props) => {
-  if (node == "")
+const NodeEditorPage = ({ params, searchParams: { nodeId } }: Props) => {
+  if (nodeId == "")
     return (
       <div className=" w-full  flex ">
         <div className=" flex flex-col w-full items-center  gap-10">
@@ -38,20 +43,17 @@ const NodeEditorPage = async ({ params, searchParams: { node } }: Props) => {
       </div>
     );
 
-  const Node = await prisma.node.findFirst({
-    where: {
-      id: node,
-    },
-    include: {
-      nextNodes: true,
-      story: {
-        select: {
-          primaryColor: true,
-          secondaryColor: true,
-        },
-      },
-    },
-  });
+  console.log("here is the node id:", nodeId);
+
+  const { data: Node, isLoading, error } = useFetchNode(nodeId);
+
+  console.log("the node", Node);
+  if (isLoading)
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
   if (!Node) return notFound();
   return (
     <div>
