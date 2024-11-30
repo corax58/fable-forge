@@ -12,9 +12,21 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useDeleteNode } from "@/app/hooks/nodes/useDeleteNode";
+import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 
 const DeleteNodeButton = ({ nodeId }: { nodeId: string }) => {
   const deleteNode = useDeleteNode();
+
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (deleteNode.isSuccess) {
+      toast({
+        title: "Node deleted successfully!",
+      });
+    }
+  }, [deleteNode.isSuccess]);
   return (
     <Dialog>
       <DialogTrigger asChild>
