@@ -1,20 +1,6 @@
 import prisma from "@/prisma/db";
 import { NextRequest, NextResponse } from "next/server";
-
-async function fetchQueries(query: any) {
-  return prisma.node.findFirst({
-    where: query,
-    include: {
-      nextNodes: true,
-      story: {
-        select: {
-          primaryColor: true,
-          secondaryColor: true,
-        },
-      },
-    },
-  });
-}
+import { nodeSchema } from "../../schema";
 
 export async function GET(
   req: NextRequest,
@@ -63,4 +49,38 @@ export async function DELETE(
   });
 
   return NextResponse.json({});
+}
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { nodeId: string } }
+) {
+  const nodeId = params.nodeId;
+  const data = await request.json();
+  const validation = nodeSchema.safeParse(data);
+
+  if (validation.error) {
+    return NextResponse.json({ error: validation.error });
+  }
+
+  try {
+    const node = await prisma.node.findFirst({
+      where: {
+        id: nodeId,
+      },
+    });
+    if (!node)
+      return NextResponse.json({ error: "node not found" }, { status: 404 });
+
+    await prisma.node.update({
+      where: {
+        id: nodeId,
+      },
+      data,
+    });
+    return NextResponse.json({});
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ error: "Error occured" }, { status: 500 });
+  }
 }

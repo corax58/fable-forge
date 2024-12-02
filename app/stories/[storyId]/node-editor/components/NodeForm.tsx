@@ -26,6 +26,7 @@ interface Props {
   text: string;
   previousNodeId?: string;
   children: ReactNode;
+  Node?: Node;
 }
 const NodeForm = ({
   storyId,
@@ -33,10 +34,12 @@ const NodeForm = ({
   text,
   previousNodeId,
   children,
+  Node,
 }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { toast } = useToast();
 
+  const defaultValues = Node ? Node : { firstNode, storyId };
   const {
     control,
     register,
@@ -46,10 +49,7 @@ const NodeForm = ({
     reset,
     formState: { errors },
   } = useForm<Node>({
-    defaultValues: {
-      firstNode,
-      storyId,
-    },
+    defaultValues,
   });
 
   const createNode = useCreateNode();
