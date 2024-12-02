@@ -14,15 +14,14 @@ interface Props {
 }
 const NodeView = ({ node }: Props) => {
   const { nextNodes, story, ...currentNode } = node;
+  const backLink = node.firstNode
+    ? `/stories/${node.storyId}`
+    : `/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`;
   return (
     <div className="flex w-full h-full gap-2 justify-center">
       <div className="flex flex-col gap-4 items-center h-96 w-max  ">
-        <Button disabled={node.firstNode} className="w-full">
-          <Link
-            href={`/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`}
-          >
-            Go Back
-          </Link>
+        <Button className="w-full">
+          <Link href={backLink}>Go Back</Link>
         </Button>
         <NodeForm
           storyId={node.storyId}
