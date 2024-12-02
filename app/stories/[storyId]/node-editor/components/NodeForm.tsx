@@ -19,6 +19,7 @@ import { useCreateNode } from "@/app/hooks/nodes/useCreateNode";
 import { ErrorMessage, Spinner } from "@/app/components";
 import { boolean } from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { useUpdateNode } from "@/app/hooks/nodes/useUpdateNode";
 
 interface Props {
   storyId: string;
@@ -27,6 +28,7 @@ interface Props {
   previousNodeId?: string;
   children: ReactNode;
   Node?: Node;
+  currentNodeId?: string;
 }
 const NodeForm = ({
   storyId,
@@ -35,6 +37,7 @@ const NodeForm = ({
   previousNodeId,
   children,
   Node,
+  currentNodeId,
 }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { toast } = useToast();
@@ -44,8 +47,6 @@ const NodeForm = ({
     control,
     register,
     handleSubmit,
-    watch,
-    setValue,
     reset,
     formState: { errors },
   } = useForm<Node>({
@@ -53,9 +54,13 @@ const NodeForm = ({
   });
 
   const createNode = useCreateNode();
+  const updateNode = useUpdateNode(Node?.id!, currentNodeId);
+
   const onSubmit: SubmitHandler<Node> = async (data, e) => {
     e?.preventDefault();
-    if (previousNodeId) {
+    if (Node) {
+      updateNode.mutate(data);
+    } else if (previousNodeId) {
       createNode.mutate({ ...data, previousNodeId: previousNodeId });
     } else {
       createNode.mutate(data);
@@ -63,13 +68,14 @@ const NodeForm = ({
   };
 
   useEffect(() => {
-    if (createNode.isError) {
+    if (createNode.isError || updateNode.isError) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
         description: "Please try again.",
       });
     }
+
     if (createNode.isSuccess) {
       setIsOpen(false);
       toast({
@@ -78,7 +84,20 @@ const NodeForm = ({
       });
       reset();
     }
-  }, [createNode.isError, createNode.isSuccess]);
+    if (updateNode.isSuccess) {
+      setIsOpen(false);
+      toast({
+        variant: "success",
+        title: "Node edited successfully!",
+      });
+      reset();
+    }
+  }, [
+    createNode.isError,
+    createNode.isSuccess,
+    updateNode.isError,
+    updateNode.isSuccess,
+  ]);
 
   return (
     <div>
@@ -112,7 +131,11 @@ const NodeForm = ({
             {errors.text && <ErrorMessage text={errors.text.message!} />}
 
             <Button className="btn" type="submit">
-              {createNode.isPending ? <Spinner /> : text}
+              {createNode.isPending || updateNode.isPending ? (
+                <Spinner />
+              ) : (
+                text
+              )}
             </Button>
           </form>
         </DialogContent>

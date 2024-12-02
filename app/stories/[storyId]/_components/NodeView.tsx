@@ -13,16 +13,29 @@ interface Props {
   node: FetchedNodes;
 }
 const NodeView = ({ node }: Props) => {
+  const { nextNodes, story, ...currentNode } = node;
   return (
     <div className="flex w-full h-full gap-2 justify-center">
-      <div className="flex justify-center h-96 w-1/6 ">
-        <Button disabled={node.firstNode}>
+      <div className="flex flex-col gap-4 items-center h-96 w-max  ">
+        <Button disabled={node.firstNode} className="w-full">
           <Link
             href={`/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`}
           >
             Go Back
           </Link>
         </Button>
+        <NodeForm
+          storyId={node.storyId}
+          firstNode={false}
+          text={"Edit node"}
+          Node={currentNode}
+          currentNodeId={node.id}
+        >
+          <Button className=" ">
+            <FaRegEdit />
+            Edit this node
+          </Button>
+        </NodeForm>
       </div>
       <div
         className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
@@ -46,14 +59,14 @@ const NodeView = ({ node }: Props) => {
         ></div>
 
         <div
-          className=" prose  text-left"
+          className=" prose  text-left mb-5"
           style={{ color: node.story.secondaryColor! }}
         >
-          <ReactMarkdown className={" text-inherit"}>{node.text}</ReactMarkdown>
+          <ReactMarkdown className={""}>{node.text}</ReactMarkdown>
         </div>
-        <div className="w-full flex justify-center items-center flex-col gap-2">
+        <div className="w-full flex justify-center items-center flex-col gap-2 mt-5">
           {node.nextNodes.map((nextNode) => (
-            <div className="flex gap-2 items-center ">
+            <div className="flex gap-2 items-center " key={nextNode.id}>
               <DeleteNodeButton nodeId={nextNode.id} />
               <Link
                 href={`/stories/${node.storyId}/node-editor?nodeId=${nextNode.id}`}
@@ -71,6 +84,8 @@ const NodeView = ({ node }: Props) => {
                 storyId={nextNode.storyId}
                 firstNode={false}
                 text={"Edit node"}
+                Node={nextNode}
+                currentNodeId={node.id}
               >
                 <Button className=" rounded-full p-0 hover:scale-110 transition-all size-10 flex justify-center items-center">
                   <FaRegEdit size={50} />

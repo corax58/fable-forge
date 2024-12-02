@@ -59,8 +59,11 @@ export async function PATCH(
   const data = await request.json();
   const validation = nodeSchema.safeParse(data);
 
+  console.log("hello", data);
   if (validation.error) {
-    return NextResponse.json({ error: validation.error });
+    console.log("error");
+    console.log(validation.error);
+    return NextResponse.json({ error: validation.error }, { status: 404 });
   }
 
   try {
@@ -72,12 +75,14 @@ export async function PATCH(
     if (!node)
       return NextResponse.json({ error: "node not found" }, { status: 404 });
 
-    await prisma.node.update({
+    const editedNode = await prisma.node.update({
       where: {
         id: nodeId,
       },
       data,
     });
+
+    console.log(node, editedNode);
     return NextResponse.json({});
   } catch (error) {
     console.log(error);

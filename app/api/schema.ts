@@ -11,8 +11,8 @@ export const storySchema = z.object({
 export const nodeSchema = z.object({
   title: z.string().min(1),
   text: z.string().optional(),
-  imageLink: z.string().optional(),
+  imageLink: z.string().nullable().optional(),
   storyId: z.string(),
   firstNode: z.boolean(),
-  previousNodeId: z.string().optional(),
+  previousNodeId: z.string().nullable().optional(),
 });
