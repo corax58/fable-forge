@@ -31,10 +31,10 @@ const DeleteNodeButton = ({ nodeId }: { nodeId: string }) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="p-2 size-max rounded-full hover:scale-110 transition-transform"
+          className="p-2 size-10 rounded-full hover:scale-110 transition-transform"
           variant={"destructive"}
         >
-          <FaTrashAlt />
+          <FaTrashAlt className=" w-28 font-bold" />
         </Button>
       </DialogTrigger>
       <DialogContent>

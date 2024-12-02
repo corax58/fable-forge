@@ -11,6 +11,7 @@ import { useFetchNode } from "@/app/hooks/nodes/useFetchNode";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Spinner } from "@/app/components";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   params: {
@@ -38,12 +39,12 @@ const NodeEditorPage = ({ params, searchParams: { nodeId } }: Props) => {
             storyId={params.storyId}
             firstNode
             text={"Create first Node"}
-          ></NodeForm>
+          >
+            <Button className=" rounded-full px-5">Create Node</Button>
+          </NodeForm>
         </div>
       </div>
     );
-
-  console.log("here is the node id:", nodeId);
 
   const { data: Node, isLoading, error } = useFetchNode(nodeId);
 

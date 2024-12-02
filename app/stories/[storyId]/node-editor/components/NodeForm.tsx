@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,17 +20,20 @@ import { ErrorMessage, Spinner } from "@/app/components";
 import { boolean } from "zod";
 import { useToast } from "@/hooks/use-toast";
 
+interface Props {
+  storyId: string;
+  firstNode: boolean;
+  text: string;
+  previousNodeId?: string;
+  children: ReactNode;
+}
 const NodeForm = ({
   storyId,
   firstNode,
   text,
   previousNodeId,
-}: {
-  storyId: string;
-  firstNode: boolean;
-  text: string;
-  previousNodeId?: string;
-}) => {
+  children,
+}: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { toast } = useToast();
 
@@ -40,6 +43,7 @@ const NodeForm = ({
     handleSubmit,
     watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<Node>({
     defaultValues: {
@@ -72,20 +76,18 @@ const NodeForm = ({
         variant: "success",
         title: "Node created successfully!",
       });
+      reset();
     }
   }, [createNode.isError, createNode.isSuccess]);
 
   return (
     <div>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger>
-          <Button className=" rounded-full px-5">Create Node</Button>
-        </DialogTrigger>
+        <DialogTrigger>{children}</DialogTrigger>
         <DialogContent className=" overflow-y-scroll max-h-screen">
           <DialogHeader>
             <DialogTitle>{text}</DialogTitle>
           </DialogHeader>
-          <div>{previousNodeId}</div>
           <form
             className="modal-box flex flex-col space-y-2 "
             onSubmit={handleSubmit(onSubmit)}
