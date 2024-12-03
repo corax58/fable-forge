@@ -11,36 +11,42 @@ import DeleteNodeButton from "./DeleteNodeButton";
 
 interface Props {
   node: FetchedNodes;
+  editable: boolean;
 }
-const NodeView = ({ node }: Props) => {
+const NodeView = ({ node, editable }: Props) => {
   const { nextNodes, story, ...currentNode } = node;
   const backLink = node.firstNode
     ? `/stories/${node.storyId}`
     : `/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`;
+
   return (
     <div className="flex w-full h-full gap-2 justify-center">
       <div className="flex flex-col gap-4 items-center h-96 w-max">
         <Button className="w-full">
           <Link href={backLink}>Go Back</Link>
         </Button>
-        <NodeForm
-          storyId={node.storyId}
-          firstNode={false}
-          text={"Edit node"}
-          Node={currentNode}
-          currentNodeId={node.id}
-        >
-          <Button className=" w-48">
-            <FaRegEdit />
-            Edit this node
-          </Button>
-        </NodeForm>
-        <DeleteNodeButton nodeId={node.id}>
-          <Button className=" w-full" variant={"destructive"}>
-            <FaTrashAlt className=" w-28 font-bold" />
-            <span>Delete this node</span>
-          </Button>
-        </DeleteNodeButton>
+        {editable && (
+          <>
+            <NodeForm
+              storyId={node.storyId}
+              firstNode={false}
+              text={"Edit node"}
+              Node={currentNode}
+              currentNodeId={node.id}
+            >
+              <Button className=" w-48">
+                <FaRegEdit />
+                Edit this node
+              </Button>
+            </NodeForm>
+            <DeleteNodeButton nodeId={node.id}>
+              <Button className=" w-full" variant={"destructive"}>
+                <FaTrashAlt className=" w-28 font-bold" />
+                <span>Delete this node</span>
+              </Button>
+            </DeleteNodeButton>
+          </>
+        )}
       </div>
       <div
         className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
@@ -64,22 +70,25 @@ const NodeView = ({ node }: Props) => {
         ></div>
 
         <div
-          className=" prose  text-left mb-5"
+          className="prose  w-10/12 h-max bg-red-500"
           style={{ color: node.story.secondaryColor! }}
         >
-          <ReactMarkdown className={""}>{node.text}</ReactMarkdown>
+          <ReactMarkdown className={"w-full"}>{node.text}</ReactMarkdown>
         </div>
-        <div className="w-full flex justify-center items-center flex-col gap-2 mt-5">
+        <div className="  h-5 w-full"></div>
+        <div className="w-full flex justify-center items-center flex-col gap-2 ">
           {node.nextNodes.map((nextNode) => (
             <div className="flex gap-2 items-center " key={nextNode.id}>
-              <DeleteNodeButton nodeId={nextNode.id}>
-                <Button
-                  className="p-2 size-10 rounded-full hover:scale-110 transition-transform"
-                  variant={"destructive"}
-                >
-                  <FaTrashAlt className=" w-28 font-bold" />
-                </Button>
-              </DeleteNodeButton>
+              {editable && (
+                <DeleteNodeButton nodeId={nextNode.id}>
+                  <Button
+                    className="p-2 size-10 rounded-full hover:scale-110 transition-transform"
+                    variant={"destructive"}
+                  >
+                    <FaTrashAlt className=" w-28 font-bold" />
+                  </Button>
+                </DeleteNodeButton>
+              )}
               <Link
                 href={`/stories/${node.storyId}/node-editor?nodeId=${nextNode.id}`}
               >
@@ -92,28 +101,31 @@ const NodeView = ({ node }: Props) => {
                   {nextNode.title}
                 </NodeNavButton>
               </Link>
-              <NodeForm
-                storyId={nextNode.storyId}
-                firstNode={false}
-                text={"Edit node"}
-                Node={nextNode}
-                currentNodeId={node.id}
-              >
-                <Button className=" rounded-full p-0 hover:scale-110 transition-all size-10 flex justify-center items-center">
-                  <FaRegEdit size={50} />
-                </Button>
-              </NodeForm>
+              {editable && (
+                <NodeForm
+                  storyId={nextNode.storyId}
+                  firstNode={false}
+                  text={"Edit node"}
+                  Node={nextNode}
+                  currentNodeId={node.id}
+                >
+                  <Button className=" rounded-full p-0 hover:scale-110 transition-all size-10 flex justify-center items-center">
+                    <FaRegEdit size={50} />
+                  </Button>
+                </NodeForm>
+              )}
             </div>
           ))}
-
-          <NodeForm
-            previousNodeId={node.id}
-            storyId={node.storyId}
-            firstNode={false}
-            text="Add a node"
-          >
-            <Button className=" rounded-full px-5">Create Node</Button>
-          </NodeForm>
+          {editable && (
+            <NodeForm
+              previousNodeId={node.id}
+              storyId={node.storyId}
+              firstNode={false}
+              text="Add a node"
+            >
+              <Button className=" rounded-full px-5">Create Node</Button>
+            </NodeForm>
+          )}
         </div>
       </div>
       <div className="h-96 w-1/6"></div>

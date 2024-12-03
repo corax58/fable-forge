@@ -58,7 +58,7 @@ const NodeEditorPage = ({ params, searchParams: { nodeId } }: Props) => {
   if (!Node) return notFound();
   return (
     <div>
-      <NodeView node={Node!} />
+      <NodeView node={Node!} editable={true} />
     </div>
   );
 };

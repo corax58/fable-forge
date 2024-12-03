@@ -10,7 +10,7 @@ interface Props {
 }
 
 const StoryIntroPreview = ({ story, firstNodeId }: Props) => {
-  const firstNodeLink = `/stories/${story.id}/read?node=${firstNodeId}`;
+  const firstNodeLink = `/stories/${story.id}/read?nodeId=${firstNodeId}`;
 
   return (
     <div
