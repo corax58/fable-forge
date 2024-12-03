@@ -42,13 +42,13 @@ export async function DELETE(
 
   if (!story) return NextResponse.json("Invalid node", { status: 404 });
 
-  await prisma.node.delete({
+  const node = await prisma.node.delete({
     where: {
       id: params.nodeId,
     },
   });
 
-  return NextResponse.json({});
+  return NextResponse.json({ node }, { status: 200 });
 }
 
 export async function PATCH(

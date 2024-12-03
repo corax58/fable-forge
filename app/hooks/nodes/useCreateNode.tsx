@@ -13,7 +13,7 @@ export const useCreateNode = () => {
     onSuccess: (data) => {
       if (data.node.firstNode) {
         router.push(
-          `/stories/${data.node.storyId}/node-editor?node=${data.node.id}`
+          `/stories/${data.node.storyId}/node-editor?nodeId=${data.node.id}`
         );
       }
       queryClient.invalidateQueries({ queryKey: ["node"] });

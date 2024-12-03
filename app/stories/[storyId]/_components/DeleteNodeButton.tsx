@@ -13,9 +13,14 @@ import {
 } from "@/components/ui/dialog";
 import { useDeleteNode } from "@/app/hooks/nodes/useDeleteNode";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 
-const DeleteNodeButton = ({ nodeId }: { nodeId: string }) => {
+interface Props {
+  nodeId: string;
+  children: ReactNode;
+}
+
+const DeleteNodeButton = ({ nodeId, children }: Props) => {
   const deleteNode = useDeleteNode();
 
   const { toast } = useToast();
@@ -29,14 +34,7 @@ const DeleteNodeButton = ({ nodeId }: { nodeId: string }) => {
   }, [deleteNode.isSuccess]);
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          className="p-2 size-10 rounded-full hover:scale-110 transition-transform"
-          variant={"destructive"}
-        >
-          <FaTrashAlt className=" w-28 font-bold" />
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Confirm deletion</DialogTitle>

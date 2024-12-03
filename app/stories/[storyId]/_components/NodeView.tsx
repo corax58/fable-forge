@@ -19,7 +19,7 @@ const NodeView = ({ node }: Props) => {
     : `/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`;
   return (
     <div className="flex w-full h-full gap-2 justify-center">
-      <div className="flex flex-col gap-4 items-center h-96 w-max  ">
+      <div className="flex flex-col gap-4 items-center h-96 w-max">
         <Button className="w-full">
           <Link href={backLink}>Go Back</Link>
         </Button>
@@ -30,11 +30,17 @@ const NodeView = ({ node }: Props) => {
           Node={currentNode}
           currentNodeId={node.id}
         >
-          <Button className=" ">
+          <Button className=" w-48">
             <FaRegEdit />
             Edit this node
           </Button>
         </NodeForm>
+        <DeleteNodeButton nodeId={node.id}>
+          <Button className=" w-full" variant={"destructive"}>
+            <FaTrashAlt className=" w-28 font-bold" />
+            <span>Delete this node</span>
+          </Button>
+        </DeleteNodeButton>
       </div>
       <div
         className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
@@ -66,7 +72,14 @@ const NodeView = ({ node }: Props) => {
         <div className="w-full flex justify-center items-center flex-col gap-2 mt-5">
           {node.nextNodes.map((nextNode) => (
             <div className="flex gap-2 items-center " key={nextNode.id}>
-              <DeleteNodeButton nodeId={nextNode.id} />
+              <DeleteNodeButton nodeId={nextNode.id}>
+                <Button
+                  className="p-2 size-10 rounded-full hover:scale-110 transition-transform"
+                  variant={"destructive"}
+                >
+                  <FaTrashAlt className=" w-28 font-bold" />
+                </Button>
+              </DeleteNodeButton>
               <Link
                 href={`/stories/${node.storyId}/node-editor?nodeId=${nextNode.id}`}
               >
