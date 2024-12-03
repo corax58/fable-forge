@@ -11,6 +11,16 @@ const config: Config = {
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: "inherit",
+            strong: { color: "inherit" },
+            b: { color: "inherit" },
+            "h1, h2, h3, h4, h5, h6": { color: "inherit" },
+          },
+        },
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
