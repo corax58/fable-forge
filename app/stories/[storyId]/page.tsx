@@ -41,7 +41,7 @@ const StoryPage = async ({ params }: Props) => {
   return (
     <div className=" flex gap-5 py-5">
       <div className=" w-2/3 ">
-        <StoryIntroPreview story={Story} />
+        <StoryIntroPreview story={Story} firstNodeId={firstNodeId} />
       </div>
       <div className=" w-1/3 flex flex-col gap-5 items-center p-5 ">
         <div className=" flex flex-col w-full  gap-5">

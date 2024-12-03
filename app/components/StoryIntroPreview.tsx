@@ -2,16 +2,15 @@ import { Story } from "@prisma/client";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
+import Link from "next/link";
 
 interface Props {
   story: Story;
+  firstNodeId?: string;
 }
 
-const StoryIntroPreview = ({ story }: Props) => {
-  const imglink =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/269px-Felis_catus-cat_on_snow.jpg";
-
-  const desc = "# hlllo\n1. hiiilkjlak";
+const StoryIntroPreview = ({ story, firstNodeId }: Props) => {
+  const firstNodeLink = `/stories/${story.id}/read?node=${firstNodeId}`;
 
   return (
     <div
@@ -44,25 +43,28 @@ const StoryIntroPreview = ({ story }: Props) => {
         </ReactMarkdown>
       </div>
       <div className="w-full flex justify-center">
-        <button
-          className=" hover:scale-105 hover:shadow-md  border-2 rounded-full p-2  pl-4 space-x-2 flex items-center justify-center w-max h-max"
-          style={{
-            borderColor: story.secondaryColor!,
-            color: story.secondaryColor!,
-          }}
-        >
-          <p className=" font-semibold text-2xl">Start</p>
-          <div
-            className="  rounded-full p-px"
-            style={{ backgroundColor: story.secondaryColor! }}
+        {firstNodeId != "" && (
+          <Link
+            href={firstNodeLink}
+            className=" hover:scale-105 hover:shadow-md  border-2 rounded-full p-2  pl-4 space-x-2 flex items-center justify-center w-max h-max"
+            style={{
+              borderColor: story.secondaryColor!,
+              color: story.secondaryColor!,
+            }}
           >
-            <GoArrowRight
-              size={30}
-              className=" w-full h-full"
-              style={{ color: story.primaryColor! }}
-            />
-          </div>
-        </button>
+            <p className=" font-semibold text-2xl">Start</p>
+            <div
+              className="  rounded-full p-px"
+              style={{ backgroundColor: story.secondaryColor! }}
+            >
+              <GoArrowRight
+                size={30}
+                className=" w-full h-full"
+                style={{ color: story.primaryColor! }}
+              />
+            </div>
+          </Link>
+        )}
       </div>
     </div>
   );
