@@ -1,4 +1,3 @@
-import React, { PropsWithChildren } from "react";
 import { GoArrowRight } from "react-icons/go";
 
 interface Props {

@@ -1,6 +1,6 @@
 "use client";
-import MarkDownEditor from "@/app/my-stories/_components/MarkDownEditor";
-import UploadWidget from "@/app/my-stories/_components/UploadWidget";
+import MarkDownEditor from "@/components/MarkDownEditor";
+import UploadWidget from "@/components/UploadWidget";
 import { Node } from "@prisma/client";
 import {
   Dialog,
@@ -15,11 +15,11 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useCreateNode } from "@/app/hooks/nodes/useCreateNode";
-import { ErrorMessage, Spinner } from "@/app/components";
+import { useCreateNode } from "@/hooks/nodes/useCreateNode";
+import { ErrorMessage, Spinner } from "@/components";
 import { boolean } from "zod";
-import { useToast } from "@/hooks/use-toast";
-import { useUpdateNode } from "@/app/hooks/nodes/useUpdateNode";
+import { useToast } from "@/hooks/toast/use-toast";
+import { useUpdateNode } from "@/hooks/nodes/useUpdateNode";
 
 interface Props {
   storyId: string;

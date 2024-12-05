@@ -1,13 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { FetchedNodes } from "@/lib/types";
-import { Node } from "@prisma/client";
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import NodeForm from "../node-editor/components/NodeForm";
-import NodeNavButton from "./NodeNavButton";
 import Link from "next/link";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import ReactMarkdown from "react-markdown";
+import NodeForm from "../node-editor/components/NodeForm";
 import DeleteNodeButton from "./DeleteNodeButton";
+import NodeNavButton from "./NodeNavButton";
 
 interface Props {
   node: FetchedNodes;

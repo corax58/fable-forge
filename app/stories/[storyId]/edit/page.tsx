@@ -1,8 +1,6 @@
-import StoryForm from "@/app/my-stories/_components/StoryForm";
+import StoryForm from "@/components/StoryForm";
 import prisma from "@/prisma/db";
-import { Story } from "@prisma/client";
 import { notFound } from "next/navigation";
-import React from "react";
 
 interface Props {
   params: {

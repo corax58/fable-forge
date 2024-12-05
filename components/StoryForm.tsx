@@ -1,22 +1,15 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import UploadWidget from "@/components/UploadWidget";
+import { useCreateStory } from "@/hooks/stories/useCreateStory";
 import { Story } from "@prisma/client";
 import "easymde/dist/easymde.min.css";
-import { useState } from "react";
-import { RxCross2 } from "react-icons/rx";
-import SimpleMDE from "react-simplemde-editor";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import UploadWidget from "../_components/UploadWidget";
-import { useUpdateStory } from "../../hooks/stories/useUpdateStory";
-import {
-  Spinner,
-  ColorPicker,
-  StoryIntroPreview,
-  ErrorMessage,
-} from "../../components";
-import { useCreateStory } from "@/app/hooks/stories/useCreateStory";
+import { RxCross2 } from "react-icons/rx";
+import { ColorPicker, ErrorMessage, Spinner, StoryIntroPreview } from ".";
+import { useUpdateStory } from "../hooks/stories/useUpdateStory";
 import MarkDownEditor from "./MarkDownEditor";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
 const StoryForm = ({ Story }: { Story?: Story }) => {
   const formElementClassName = " flex space-y-2 flex-col  ";

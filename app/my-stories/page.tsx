@@ -1,7 +1,7 @@
 import React from "react";
 import CreateStory from "./_components/CreateStory";
-import { StoryCard } from "../components";
 import prisma from "@/prisma/db";
+import StoryCard from "@/components/StoryCard";
 
 const MyStoriesPage = async () => {
   const stories = await prisma.story.findMany();

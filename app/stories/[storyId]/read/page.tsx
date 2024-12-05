@@ -1,6 +1,6 @@
 "use client";
-import { Spinner } from "@/app/components";
-import { useFetchNode } from "@/app/hooks/nodes/useFetchNode";
+import { Spinner } from "@/components";
+import { useFetchNode } from "@/hooks/nodes/useFetchNode";
 import { notFound } from "next/navigation";
 import React from "react";
 import NodeView from "../_components/NodeView";

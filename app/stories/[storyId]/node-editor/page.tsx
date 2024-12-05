@@ -1,17 +1,12 @@
 "use client";
-import prisma from "@/prisma/db";
+import { Spinner } from "@/components";
+import { Button } from "@/components/ui/button";
+import { useFetchNode } from "@/hooks/nodes/useFetchNode";
 import { firstNodeImage } from "@/public/image";
 import Image from "next/image";
-import React from "react";
-import { FaPlus } from "react-icons/fa";
-import NodeForm from "./components/NodeForm";
-import NodeView from "../_components/NodeView";
 import { notFound } from "next/navigation";
-import { useFetchNode } from "@/app/hooks/nodes/useFetchNode";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { Spinner } from "@/app/components";
-import { Button } from "@/components/ui/button";
+import NodeView from "../_components/NodeView";
+import NodeForm from "./components/NodeForm";
 
 interface Props {
   params: {

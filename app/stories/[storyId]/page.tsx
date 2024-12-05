@@ -1,14 +1,12 @@
-import { StoryIntroPreview } from "@/app/components";
-import prisma from "@/prisma/db";
-import { notFound } from "next/navigation";
-import React from "react";
-import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
-import { TbHierarchy3 } from "react-icons/tb";
-import { LiaStarSolid } from "react-icons/lia";
-import Rating from "@/app/components/Rating";
-import DeleteStory from "@/app/components/DeleteStory";
-import Link from "next/link";
+import { StoryIntroPreview } from "@/components";
+import DeleteStory from "@/components/DeleteStory";
+import Rating from "@/components/Rating";
 import { Button } from "@/components/ui/button";
+import prisma from "@/prisma/db";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { FaRegEdit } from "react-icons/fa";
+import { TbHierarchy3 } from "react-icons/tb";
 
 interface Props {
   params: {

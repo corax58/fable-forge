@@ -1,18 +1,17 @@
 "use client";
-import { FaTrashAlt } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
-  DialogFooter,
-  DialogHeader,
   DialogContent,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useDeleteNode } from "@/app/hooks/nodes/useDeleteNode";
-import { useToast } from "@/hooks/use-toast";
+import { useDeleteNode } from "@/hooks/nodes/useDeleteNode";
+import { useToast } from "@/hooks/toast/use-toast";
 import { ReactNode, useEffect } from "react";
 
 interface Props {
