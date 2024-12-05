@@ -35,7 +35,7 @@ const StoryIntroPreview = ({ story, firstNodeId }: Props) => {
         style={{ backgroundColor: story.secondaryColor! }}
       ></div>
       <div
-        className=" prose  text-left"
+        className=" prose !max-w-none text-left"
         style={{ color: story.secondaryColor! }}
       >
         <ReactMarkdown className={" text-inherit"}>

@@ -17,7 +17,9 @@ const NodeView = ({ node, editable }: Props) => {
   const { nextNodes, story, ...currentNode } = node;
   const backLink = node.firstNode
     ? `/stories/${node.storyId}`
-    : `/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`;
+    : editable
+    ? `/stories/${node.storyId}/node-editor?nodeId=${node.previousNodeId}`
+    : `/stories/${node.storyId}/read?nodeId=${node.previousNodeId}`;
 
   return (
     <div className="flex w-full h-full gap-2 justify-center">
@@ -70,7 +72,7 @@ const NodeView = ({ node, editable }: Props) => {
         ></div>
 
         <div
-          className="prose  w-10/12 h-max bg-red-500"
+          className="prose !max-w-none w-full h-max "
           style={{ color: node.story.secondaryColor! }}
         >
           <ReactMarkdown className={"w-full"}>{node.text}</ReactMarkdown>
@@ -90,7 +92,11 @@ const NodeView = ({ node, editable }: Props) => {
                 </DeleteNodeButton>
               )}
               <Link
-                href={`/stories/${node.storyId}/node-editor?nodeId=${nextNode.id}`}
+                href={
+                  editable
+                    ? `/stories/${node.storyId}/node-editor?nodeId=${nextNode.id}`
+                    : `/stories/${node.storyId}/read?nodeId=${nextNode.id}`
+                }
               >
                 <NodeNavButton
                   colors={{
