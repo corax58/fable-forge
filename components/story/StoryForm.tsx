@@ -7,7 +7,10 @@ import { Story } from "@prisma/client";
 import "easymde/dist/easymde.min.css";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { ColorPicker, ErrorMessage, Spinner, StoryIntroPreview } from "..";
+import ColorPicker from "@/components/story/ColorPicker";
+import Spinner from "@/components/Spinner";
+import ErrorMessage from "@/components/ErrorMessage";
+import StoryIntroPreview from "@/components/story/StoryIntroPreview";
 import { useUpdateStory } from "../../hooks/stories/useUpdateStory";
 import MarkDownEditor from "../MarkDownEditor";
 

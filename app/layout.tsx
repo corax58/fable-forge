@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "../components/NavBar";
 import QueryClientProvider from "../components/QueryClientProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,11 +34,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <QueryClientProvider>
-          <NavBar />
-          <main className=" flex flex-col px-16 pt-5 h-full w-full ">
-            {children}
-          </main>
-          <Toaster />
+          <SidebarProvider>
+            <AppSidebar />
+
+            {/* <NavBar /> */}
+            <main className=" flex flex-col px-16 pt-5 h-full w-full ">
+              <SidebarTrigger />
+              {children}
+            </main>
+            <Toaster />
+          </SidebarProvider>
         </QueryClientProvider>
       </body>
     </html>
