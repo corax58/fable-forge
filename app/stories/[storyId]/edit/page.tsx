@@ -1,4 +1,4 @@
-import StoryForm from "@/components/StoryForm";
+import StoryForm from "@/components/story/StoryForm";
 import prisma from "@/prisma/db";
 import { notFound } from "next/navigation";
 

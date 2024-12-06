@@ -1,5 +1,5 @@
 import { StoryIntroPreview } from "@/components";
-import DeleteStory from "@/components/DeleteStory";
+import DeleteStory from "@/components/story/DeleteStory";
 import Rating from "@/components/Rating";
 import { Button } from "@/components/ui/button";
 import prisma from "@/prisma/db";

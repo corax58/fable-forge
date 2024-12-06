@@ -7,9 +7,9 @@ import { Story } from "@prisma/client";
 import "easymde/dist/easymde.min.css";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { ColorPicker, ErrorMessage, Spinner, StoryIntroPreview } from ".";
-import { useUpdateStory } from "../hooks/stories/useUpdateStory";
-import MarkDownEditor from "./MarkDownEditor";
+import { ColorPicker, ErrorMessage, Spinner, StoryIntroPreview } from "..";
+import { useUpdateStory } from "../../hooks/stories/useUpdateStory";
+import MarkDownEditor from "../MarkDownEditor";
 
 const StoryForm = ({ Story }: { Story?: Story }) => {
   const formElementClassName = " flex space-y-2 flex-col  ";

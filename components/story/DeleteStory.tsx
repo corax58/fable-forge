@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
-import { useDeleteStory } from "../hooks/stories/useDeleteStory";
+import { useDeleteStory } from "../../hooks/stories/useDeleteStory";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

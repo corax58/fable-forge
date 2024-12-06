@@ -1,5 +1,5 @@
 "use client";
-import StoryForm from "../../../components/StoryForm";
+import StoryForm from "../../../components/story/StoryForm";
 
 const CreateStoryPage = () => {
   return <StoryForm />;
