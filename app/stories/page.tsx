@@ -1,4 +1,4 @@
-import { StoryCard } from "@/components";
+import StoryCard from "@/components/story/StoryCard";
 import prisma from "@/prisma/db";
 
 const BrowseStoriesPage = async () => {

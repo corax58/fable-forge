@@ -38,7 +38,7 @@ export default function RootLayout({
             <AppSidebar />
 
             {/* <NavBar /> */}
-            <main className=" flex flex-col px-16 pt-5 h-full w-full ">
+            <main className=" flex flex-col  h-full w-full ">
               <SidebarTrigger />
               {children}
             </main>

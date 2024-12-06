@@ -21,33 +21,7 @@ const NodeView = ({ node, editable }: Props) => {
 
   return (
     <div className="flex w-full h-full gap-2 justify-center">
-      <div className="flex flex-col gap-4 items-center h-96 w-max">
-        <Button className="w-full">
-          <Link href={backLink}>Go Back</Link>
-        </Button>
-        {editable && (
-          <>
-            <NodeForm
-              storyId={node.storyId}
-              firstNode={false}
-              text={"Edit node"}
-              Node={currentNode}
-              currentNodeId={node.id}
-            >
-              <Button className=" w-48">
-                <FaRegEdit />
-                Edit this node
-              </Button>
-            </NodeForm>
-            <DeleteNodeButton nodeId={node.id}>
-              <Button className=" w-full" variant={"destructive"}>
-                <FaTrashAlt className=" w-28 font-bold" />
-                <span>Delete this node</span>
-              </Button>
-            </DeleteNodeButton>
-          </>
-        )}
-      </div>
+      {" "}
       <div
         className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
         style={{
@@ -132,7 +106,33 @@ const NodeView = ({ node, editable }: Props) => {
           )}
         </div>
       </div>
-      <div className="h-96 w-1/6"></div>
+      <div className="flex flex-col gap-4 items-center h-96 w-max">
+        <Button className="w-full">
+          <Link href={backLink}>Go Back</Link>
+        </Button>
+        {editable && (
+          <>
+            <NodeForm
+              storyId={node.storyId}
+              firstNode={false}
+              text={"Edit node"}
+              Node={currentNode}
+              currentNodeId={node.id}
+            >
+              <Button className=" w-48">
+                <FaRegEdit />
+                Edit this node
+              </Button>
+            </NodeForm>
+            <DeleteNodeButton nodeId={node.id}>
+              <Button className=" w-full" variant={"destructive"}>
+                <FaTrashAlt className=" w-28 font-bold" />
+                <span>Delete this node</span>
+              </Button>
+            </DeleteNodeButton>
+          </>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { StoryIntroPreview } from "@/components";
+import StoryIntroPreview from "@/components/story/StoryIntroPreview";
 import DeleteStory from "@/components/story/DeleteStory";
 import Rating from "@/components/Rating";
 import { Button } from "@/components/ui/button";

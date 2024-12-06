@@ -1,5 +1,5 @@
 "use client";
-import { Spinner } from "@/components";
+import Spinner from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
 import { useFetchNode } from "@/hooks/nodes/useFetchNode";
 import { firstNodeImage } from "@/public/image";
