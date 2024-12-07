@@ -34,16 +34,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <QueryClientProvider>
-          <SidebarProvider>
-            <AppSidebar />
-
-            {/* <NavBar /> */}
-            <main className=" flex flex-col  h-full w-full ">
-              <SidebarTrigger />
-              {children}
-            </main>
-            <Toaster />
-          </SidebarProvider>
+          <main className=" ">{children}</main>
+          <Toaster />
         </QueryClientProvider>
       </body>
     </html>
