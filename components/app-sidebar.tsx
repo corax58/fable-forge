@@ -87,6 +87,7 @@ export function AppSidebar() {
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter className="pb-5">
+          {}
           <UserCard />
         </SidebarFooter>
       </Sidebar>

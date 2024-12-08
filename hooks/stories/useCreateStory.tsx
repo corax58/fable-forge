@@ -1,3 +1,4 @@
+import axiosInstance from "@/lib/axiosInstance";
 import { Story } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,7 +9,8 @@ export const useCreateStory = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: Story) => axios.post("/api/story", data),
+    mutationFn: (data: Story) =>
+      axiosInstance.post("/api/story", data, { withCredentials: true }),
     mutationKey: ["story"],
     onSuccess: () => {
       router.push("/my-stories");

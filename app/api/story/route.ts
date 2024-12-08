@@ -1,13 +1,17 @@
 import prisma from "@/prisma/db";
 import { NextRequest, NextResponse } from "next/server";
 import { storySchema } from "../schema";
-import { request } from "http";
-
-export const GET = (request: NextRequest) => {
-  return NextResponse.json({ message: "halloooo" }, { status: 200 });
-};
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export async function POST(request: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: headers(),
+  });
+
+  if (!session) {
+    return NextResponse.json({ Error: "Unauthorized" }, { status: 401 });
+  }
   const data = await request.json();
   const validation = storySchema.safeParse(data);
 
@@ -20,9 +24,8 @@ export async function POST(request: NextRequest) {
 
   try {
     const story = await prisma.story.create({
-      data,
+      data: { ...data, authorId: session.user.id },
     });
-
     return NextResponse.json({ story }, { status: 201 });
   } catch (e) {
     console.log(e);
