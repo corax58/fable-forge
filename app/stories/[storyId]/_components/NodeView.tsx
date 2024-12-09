@@ -20,7 +20,7 @@ const NodeView = ({ node, editable }: Props) => {
     : `/stories/${node.storyId}/read?nodeId=${node.previousNodeId}`;
 
   return (
-    <div className="flex w-full h-full gap-2 justify-center">
+    <div className="flex w-full h-full gap-5 justify-center">
       {" "}
       <div
         className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
