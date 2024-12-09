@@ -13,7 +13,7 @@ export const useCreateStory = () => {
       axiosInstance.post("/api/story", data, { withCredentials: true }),
     mutationKey: ["story"],
     onSuccess: () => {
-      router.push("/my-stories");
+      router.push("/stories/my-stories");
       queryClient.invalidateQueries({ queryKey: ["story"] });
     },
   });

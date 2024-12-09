@@ -11,7 +11,7 @@ export const useUpdateStory = ({ storyId }: { storyId?: string }) => {
     mutationFn: (data: Story) => axios.patch("/api/story/" + storyId, data),
     mutationKey: ["story"],
     onSuccess: () => {
-      if (storyId) router.push("/stories/" + storyId);
+      if (storyId) router.push("/stories/my-stories/" + storyId);
       queryClient.invalidateQueries({ queryKey: ["story"] });
     },
   });

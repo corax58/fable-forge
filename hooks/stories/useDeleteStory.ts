@@ -12,7 +12,7 @@ export const useDeleteStory = () => {
     mutationKey: ["story"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["story"] });
-      router.push("/my-stories");
+      router.push("/stories/my-stories");
     },
   });
 };
