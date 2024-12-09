@@ -1,15 +1,24 @@
 "use client";
+import { addToBookmarks } from "@/actions/addToBookmark";
+import { removeFromBookmark } from "@/actions/removerFromBookmark";
 import { BookmarkIcon } from "lucide-react";
 import { useState } from "react";
 
-const BookMark = ({ storyId }: { storyId: string }) => {
+interface Props {
+  storyId: string;
+  userId: string;
+}
+const BookMark = ({ storyId, userId }: Props) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
     <BookmarkIcon
       onClick={(even: React.MouseEvent) => {
-        even.stopPropagation();
-        setIsChecked(!isChecked);
+        if (isChecked) {
+          removeFromBookmark(userId, storyId);
+        } else {
+          addToBookmarks(userId, storyId);
+        }
       }}
       fill={isChecked ? "red" : "white"}
       strokeWidth={isChecked ? 0 : 2}

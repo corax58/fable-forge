@@ -23,6 +23,27 @@ export async function DELETE(
   return NextResponse.json({});
 }
 
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { storyId: string } }
+) {
+  const story = await prisma.story.findUnique({
+    where: {
+      id: params.storyId,
+    },
+  });
+
+  if (!story) return NextResponse.json("Invalid story", { status: 404 });
+
+  await prisma.story.delete({
+    where: {
+      id: params.storyId,
+    },
+  });
+
+  return NextResponse.json({});
+}
+
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { storyId: string } }

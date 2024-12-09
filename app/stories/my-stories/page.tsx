@@ -1,15 +1,21 @@
 "use client";
-import React from "react";
-import CreateStory from "./_components/CreateStory";
-import prisma from "@/prisma/db";
+import ErrorMessage from "@/components/ErrorMessage";
 import StoryCard from "@/components/story/StoryCard";
-import { useSession } from "@/lib/auth-client";
-import MyStoriesGrid from "./_components/MyStoriesGrid";
+import useFetchStories from "@/hooks/stories/useFetchStories";
+import CreateStory from "./_components/CreateStory";
 
-const MyStoriesPage = async () => {
-  const { data } = useSession();
-
-  return <MyStoriesGrid userId={data?.user.id!} />;
+const MyStoriesPage = () => {
+  const { data: stories, error, isPending } = useFetchStories();
+  if (isPending) return <p>Loading...</p>;
+  if (error) return <ErrorMessage text="Error please try again" />;
+  return (
+    <div className=" grid  grid-cols-4 gap-5 w-full ">
+      <CreateStory />
+      {stories.map((story) => (
+        <StoryCard story={story} />
+      ))}
+    </div>
+  );
 };
 
 export default MyStoriesPage;

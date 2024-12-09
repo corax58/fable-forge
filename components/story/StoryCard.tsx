@@ -7,13 +7,14 @@ import { StoryWithAuthor } from "@/lib/types";
 import { Bookmark, BookmarkCheck, BookmarkIcon } from "lucide-react";
 import Badge from "../Badge";
 import BookMark from "../Bookmark";
+import { useSession } from "@/lib/auth-client";
 
 interface Props {
   story: StoryWithAuthor;
+  userId?: string;
 }
 
 const StoryCard = ({ story }: Props) => {
-  console.log(story.status);
   return (
     <div className=" break-inside-avoid-column  flex flex-col w-80 h-max p-4 space-y-2 bg-white  rounded-3xl">
       <Link href={`/stories/${story.id}`} className="">
@@ -38,15 +39,12 @@ const StoryCard = ({ story }: Props) => {
             </p>
           </div>
         </div>
+        <div className=" w-full flex justify-between ">
+          <Badge status={"jkk"} />
+        </div>
       </Link>
-      <div className=" w-full flex justify-between ">
-        <Badge status={"jkk"} />
-        <BookMark storyId={story.id} />
-      </div>
     </div>
   );
 };
-
-// type bagdeStatus = "InProgress" | "Completed";
 
 export default StoryCard;

@@ -9,12 +9,7 @@ import Link from "next/link";
 
 const UserCard = () => {
   const session = useSession();
-  console.log(session);
-  const user = {
-    name: "Abubeker",
-    image: noImage,
-    email: "abubekera87@gmail.com",
-  };
+
   return (
     <div>
       {session.data ? (
@@ -22,7 +17,7 @@ const UserCard = () => {
           <PopoverTrigger>
             <div className=" flex items-center gap-2 hover:bg-neutral-200 transition-all rounded-full p-2 pr-4">
               <Image
-                src={user.image}
+                src={session.data?.user.image!}
                 alt="user image"
                 width={45}
                 height={45}

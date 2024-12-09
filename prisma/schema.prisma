@@ -54,6 +54,8 @@ model Bookmark {
   story   Story  @relation(fields: [storyId], references: [id])
   userId  String
   user    User   @relation(fields: [userId], references: [id])
+
+  @@unique([userId, storyId])
 }
 
 model Review {
