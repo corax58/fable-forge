@@ -5,6 +5,7 @@ const BrowseStoriesPage = async () => {
   const Stories = await prisma.story.findMany({
     include: {
       author: true,
+      bookmarks: true,
     },
   });
 

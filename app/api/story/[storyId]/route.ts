@@ -1,6 +1,8 @@
 import prisma from "@/prisma/db";
 import { NextRequest, NextResponse } from "next/server";
 import { storySchema } from "../../schema";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export async function DELETE(
   request: NextRequest,
@@ -27,22 +29,55 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { storyId: string } }
 ) {
-  console.log("the param func");
-  const story = await prisma.story.findUnique({
-    where: {
-      id: params.storyId,
-    },
+  const session = await auth.api.getSession({
+    headers: headers(),
   });
 
-  if (!story) return NextResponse.json("Invalid story", { status: 404 });
+  try {
+    let Story;
+    if (session) {
+      Story = await prisma.story.findFirst({
+        where: {
+          id: params.storyId,
+        },
+        include: {
+          bookmarks: {
+            where: {
+              userId: session.user.id,
+            },
+          },
+          nodes: {
+            where: {
+              firstNode: true,
+            },
+          },
+        },
+      });
+    } else {
+      Story = await prisma.story.findFirst({
+        where: {
+          id: params.storyId,
+        },
+        include: {
+          nodes: {
+            where: {
+              firstNode: true,
+            },
+          },
+        },
+      });
+    }
 
-  await prisma.story.delete({
-    where: {
-      id: params.storyId,
-    },
-  });
+    if (!Story) return NextResponse.json("Invalid story", { status: 404 });
 
-  return NextResponse.json({});
+    return NextResponse.json(Story, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Error something went wrong " },
+      { status: 500 }
+    );
+  }
 }
 
 export async function PATCH(
