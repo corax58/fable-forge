@@ -27,6 +27,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { storyId: string } }
 ) {
+  console.log("the param func");
   const story = await prisma.story.findUnique({
     where: {
       id: params.storyId,

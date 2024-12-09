@@ -7,7 +7,7 @@ const useFetchStories = () => {
   return useQuery<StoryWithAuthor[]>({
     queryKey: ["my stories"],
     queryFn: () =>
-      axiosInstance.get("/story/myStories").then((res) => res.data),
+      axiosInstance.get("/api/story/myStories").then((res) => res.data),
   });
 };
 
