@@ -8,8 +8,10 @@ const layout = async ({ children }: PropsWithChildren) => {
       <SidebarProvider>
         <AppSidebar />
         <>
-          <SidebarTrigger />
-          {children}
+          <div className="bg-neutral-100 w-full">
+            <SidebarTrigger />
+            {children}
+          </div>
         </>
       </SidebarProvider>
     </>

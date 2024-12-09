@@ -10,3 +10,8 @@ export type FetchedNodes = Prisma.NodeGetPayload<{
     };
   };
 }>;
+export type StoryWithAuthor = Prisma.StoryGetPayload<{
+  include: {
+    author: true;
+  };
+}>;
