@@ -31,7 +31,7 @@ const items = [
   },
   {
     title: "Bookmarks",
-    url: "#",
+    url: "/stories/bookmarks",
     icon: Bookmark,
   },
   {
