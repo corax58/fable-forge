@@ -10,7 +10,7 @@ const layout = async ({ children }: PropsWithChildren) => {
         <>
           <div className="bg-neutral-100 w-full">
             <SidebarTrigger />
-            {children}
+            <div className="px-10">{children}</div>
           </div>
         </>
       </SidebarProvider>

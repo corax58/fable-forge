@@ -1,31 +1,22 @@
-import {
-  Calendar,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-  Bookmark,
-  Notebook,
-  LibraryBig,
-} from "lucide-react";
-
+"use client";
+import { Bookmark, LibraryBig, Notebook, Search, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { Logo } from "@/public/image";
 import Image from "next/image";
-import { Logo, noImage } from "@/public/image";
+import { usePathname } from "next/navigation";
 import UserCard from "./UserCard";
-
+import classnames from "classnames";
 // Menu items.
 const items = [
   {
@@ -35,7 +26,7 @@ const items = [
   },
   {
     title: "My stories",
-    url: "/my-stories",
+    url: "/stories/my-stories",
     icon: Notebook,
   },
   {
@@ -56,6 +47,9 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const currentPath = usePathname();
+  const path = currentPath.split("/");
+  console.log(path);
   return (
     <div className=" w-max h-max bg-white">
       <Sidebar className="">

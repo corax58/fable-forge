@@ -8,10 +8,8 @@ const BrowseStoriesPage = async () => {
     },
   });
 
-  console.log(Stories);
-
   return (
-    <div className=" grid  grid-cols-4 gap-5 w-full   p-10 ">
+    <div className=" grid  grid-cols-4 gap-5 w-full  ">
       {Stories.map((story) => (
         <StoryCard story={story} />
       ))}

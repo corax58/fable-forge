@@ -1,19 +1,15 @@
+"use client";
 import React from "react";
 import CreateStory from "./_components/CreateStory";
 import prisma from "@/prisma/db";
 import StoryCard from "@/components/story/StoryCard";
+import { useSession } from "@/lib/auth-client";
+import MyStoriesGrid from "./_components/MyStoriesGrid";
 
 const MyStoriesPage = async () => {
-  const stories = await prisma.story.findMany();
+  const { data } = useSession();
 
-  return (
-    <div className=" grid  grid-cols-4 gap-5 w-full ">
-      <CreateStory />
-      {stories.map((story) => (
-        <StoryCard story={story} />
-      ))}
-    </div>
-  );
+  return <MyStoriesGrid userId={data?.user.id!} />;
 };
 
 export default MyStoriesPage;

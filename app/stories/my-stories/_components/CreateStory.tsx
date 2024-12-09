@@ -4,13 +4,13 @@ import Link from "next/link";
 const CreateStory = () => {
   return (
     <Link
-      href={"/my-stories/new"}
-      className=" group transition-all  w-80  h-72 space-y-4  border-dashed border-2 bg-gray-200  border-black  flex items-center flex-col justify-center"
+      href={"/stories/my-stories/new"}
+      className="group transition-colors w-full h-full rounded-3xl flex gap-2 flex-col justify-center items-center bg-slate-200 hover:bg-slate-300 border-2 border-black border-dashed"
     >
-      <div className=" bg-slate-300 transition-all  rounded-full">
+      <div className=" bg-slate-300 group-hover:bg-slate-200  transition-all  rounded-full">
         <GoPlus size={70} />
       </div>
-      <p>New Story</p>
+      <p className=" font-semibold text-lg">New Story</p>
     </Link>
   );
 };
