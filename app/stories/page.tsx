@@ -12,7 +12,22 @@ const BrowseStoriesPage = async () => {
   return (
     <div className=" grid  grid-cols-4 gap-5 w-full  ">
       {Stories.map((story) => (
-        <StoryCard story={story} />
+        <StoryCard story={story} key={story.id} />
+      ))}
+      {Stories.map((story) => (
+        <StoryCard story={story} key={story.id} />
+      ))}
+      {Stories.map((story) => (
+        <StoryCard story={story} key={story.id} />
+      ))}
+      {Stories.map((story) => (
+        <StoryCard story={story} key={story.id} />
+      ))}
+      {Stories.map((story) => (
+        <StoryCard story={story} key={story.id} />
+      ))}
+      {Stories.map((story) => (
+        <StoryCard story={story} key={story.id} />
       ))}
     </div>
   );

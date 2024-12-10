@@ -32,7 +32,7 @@ const UserCard = () => {
               </div>
             </div>
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent className="w-min">
             <Button onClick={() => signOut()}>Logout</Button>
           </PopoverContent>
         </Popover>
