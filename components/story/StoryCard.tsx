@@ -16,20 +16,19 @@ interface Props {
 
 const StoryCard = ({ story }: Props) => {
   return (
-    <div className=" break-inside-avoid-column  flex flex-col w-80 h-max p-4 space-y-2 bg-white  rounded-3xl">
+    <div className=" break-inside-avoid-column  flex flex-col w-full h-max p-4 space-y-2 bg-white  rounded-3xl">
       <Link href={`/stories/${story.id}`} className="">
         <div className=" flex flex-col space-y-3 ">
-          <div className=" w-72 h-48">
+          <div className=" w-full h-48">
             <Image
-              width={288}
-              height={192}
               src={
                 story.imageUrl!
                   ? story.imageUrl!
                   : (noImage as unknown as string)
               }
-              alt={"story image"}
-              className=" object-cover rounded-xl h-full "
+              alt="Story Image"
+              objectFit="cover"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
           <div className=" truncate   ">
@@ -38,9 +37,9 @@ const StoryCard = ({ story }: Props) => {
               by <span className=" underline ">{story.author.name}</span>
             </p>
           </div>
-        </div>
-        <div className=" w-full flex justify-between ">
-          <Badge status={"jkk"} />
+          <div className=" w-full flex justify-between ">
+            <Badge status={"jkk"} />
+          </div>
         </div>
       </Link>
     </div>
