@@ -1,3 +1,4 @@
+import CallToAction from "@/components/landing page/CallToAction";
 import Features from "@/components/landing page/Features";
 import Hero from "@/components/landing page/Hero";
 import Navbar from "@/components/landing page/Navbar";
@@ -12,6 +13,7 @@ export default function Home() {
       <Wellcome />
       <Features />
       <Testimonial />
+      <CallToAction />
     </div>
   );
 }
