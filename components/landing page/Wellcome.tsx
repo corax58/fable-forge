@@ -46,7 +46,7 @@ const Wellcome = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-[476px] pl-[300px] pr-14 flex justify-center flex-col bg-slate-100">
+        <div className="w-full h-[476px] pl-[300px] pr-14 flex justify-center flex-col bg-slate-200">
           <div className="w-96 text-justify flex flex-col gap-5 ">
             <p className="  text-sm">
               A World of Infinite Stories at Your Fingertips
