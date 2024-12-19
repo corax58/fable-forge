@@ -1,20 +1,49 @@
+"use client";
 import { Logo } from "@/public/image";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <section className=" fixed  w-full p-5 z-50">
-      <div className=" bg-white p-2 px-10 flex justify-between rounded-full items-center">
-        <div className=" flex gap-3 items-center">
-          <Image src={Logo} alt="logo" quality={10} className=" w-14" />
-          <p className=" text-2xl font-bold">Fable Forge</p>
+      <div className="md:rounded-full  bg-white p-2 px-5 md:px-10   ">
+        <div className={" justify-between  items-center flex "}>
+          <div
+            className={` flex gap-3 items-center transition-all  ${
+              isOpen ? "scale-0" : ""
+            }`}
+          >
+            <Image src={Logo} alt="logo" quality={10} className=" w-14" />
+            <p className=" xm:text-2xl font-bold">Fable Forge</p>
+          </div>
+          <div onClick={() => setIsOpen(!isOpen)} className="md:hidden">
+            {isOpen ? <X /> : <Menu />}
+          </div>
+
+          <div className=" hidden  md:flex gap-3 items-center font-semibold">
+            <p>Contact</p>
+            <p>About</p>
+            <Button className="h-min p-2 px-4 rounded-full">Login</Button>
+          </div>
         </div>
-        <div className=" flex gap-3 items-center font-semibold">
-          <p>Contact</p>
-          <p>About</p>
-          <Button className="h-min p-2 px-4 rounded-full">Login</Button>
+        <div
+          className={` gap-2 w-full flex flex-col items-center transition-all ${
+            isOpen ? "h-24" : "h-0"
+          }
+          `}
+        >
+          {isOpen && (
+            <>
+              <p>Contact</p>
+              <p>About</p>
+              <Button className="h-min w-full p-2 px-4 rounded-full">
+                Login
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </section>
