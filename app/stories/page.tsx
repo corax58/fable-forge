@@ -14,21 +14,6 @@ const BrowseStoriesPage = async () => {
       {Stories.map((story) => (
         <StoryCard story={story} key={story.id} />
       ))}
-      {Stories.map((story) => (
-        <StoryCard story={story} key={story.id} />
-      ))}
-      {Stories.map((story) => (
-        <StoryCard story={story} key={story.id} />
-      ))}
-      {Stories.map((story) => (
-        <StoryCard story={story} key={story.id} />
-      ))}
-      {Stories.map((story) => (
-        <StoryCard story={story} key={story.id} />
-      ))}
-      {Stories.map((story) => (
-        <StoryCard story={story} key={story.id} />
-      ))}
     </div>
   );
 };

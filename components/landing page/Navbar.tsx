@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 const Navbar = () => {
   return (
-    <section className=" fixed  w-full p-5">
+    <section className=" fixed  w-full p-5 z-50">
       <div className=" bg-white p-2 px-10 flex justify-between rounded-full items-center">
         <div className=" flex gap-3 items-center">
           <Image src={Logo} alt="logo" quality={10} className=" w-14" />

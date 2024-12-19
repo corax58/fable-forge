@@ -16,10 +16,10 @@ interface Props {
 
 const StoryCard = ({ story }: Props) => {
   return (
-    <div className=" break-inside-avoid-column  flex flex-col w-full h-max p-4 space-y-2 bg-white  rounded-3xl">
+    <div className=" break-inside-avoid-column  flex flex-col w-max h-max p-4 space-y-2 bg-white  rounded-3xl">
       <Link href={`/stories/${story.id}`} className="">
         <div className=" flex flex-col space-y-3 ">
-          <div className=" w-full h-48">
+          <div className=" relative   w-64 h-48">
             <Image
               src={
                 story.imageUrl!
@@ -27,6 +27,7 @@ const StoryCard = ({ story }: Props) => {
                   : (noImage as unknown as string)
               }
               alt="Story Image"
+              fill
               objectFit="cover"
               className="w-full h-full object-cover rounded-xl"
             />

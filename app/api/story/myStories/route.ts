@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   console.log("function invoked");
+  console.log(headers().getSetCookie);
   const session = await auth.api.getSession({
     headers: headers(),
   });

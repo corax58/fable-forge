@@ -21,9 +21,12 @@ const UploadWidget = ({ handleImage }: Props) => {
         }}
       >
         {({ open }) => (
-          <Button onClick={() => open()} className=" btn">
+          <div
+            onClick={() => open()}
+            className=" px-4 py-1 rounded-md bg-black text-white cursor-pointer"
+          >
             Upload Image
-          </Button>
+          </div>
         )}
       </CldUploadWidget>
     </div>
