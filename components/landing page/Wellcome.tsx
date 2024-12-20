@@ -16,42 +16,42 @@ import React from "react";
 
 const Wellcome = () => {
   return (
-    <section className=" h-screen w-full bg-slate-300 flex  items-center">
-      <div className=" h-max pl-40  w-full flex">
-        <div className=" relative w-[375px] h-[476px] ">
-          <div className="absolute left-[40%] ">
-            <div className="relative  w-[375px] h-[476px]  ">
+    <section className=" pt-10 md:h-screen w-full bg-slate-200 md:bg-slate-300 flex  items-center">
+      <div className=" h-max  xl:pl-40  w-full flex flex-col md:flex-row">
+        <div className="   md:relative h-max md:w-[375px] md:h-[476px] ">
+          <div className="md:absolute h-max  md:left-[10%] lg:left-[30%] xl:left-[40%] ">
+            <div className=" overflow-x-scroll gap-5 md:relative  flex h-max md:w-[375px] md:h-[476px]  ">
               <Image
                 src={wellcome_image_3}
                 alt="welcome image"
                 width={250}
                 height={280}
                 objectFit="cover"
-                className="absolute right-0 border-8 border-white hover:z-10 transition-all  rounded-[36px]"
+                className="md:absolute right-0 border-8 border-white hover:z-10 transition-all  rounded-[36px]"
               />
               <Image
                 src={wellcome_image_2}
                 alt="welcome image"
                 width={250}
                 height={280}
-                className="absolute bottom-0   left-0 border-8 border-white hover:z-10  transition-all rounded-[36px]"
+                className="md:absolute bottom-0   left-0 border-8 border-white hover:z-10  transition-all rounded-[36px]"
               />
               <Image
                 src={wellcome_image_1}
                 alt="welcome image"
                 width={250}
                 height={280}
-                className="absolute  top-[10%] left-[15%] border-8 border-white  hover:z-10  transition-all  rounded-[36px]"
+                className="md:absolute  top-[10%] left-[15%] border-8 border-white  hover:z-10  transition-all  rounded-[36px]"
               />
             </div>
           </div>
         </div>
-        <div className="w-full h-[476px] pl-[300px] pr-14 flex justify-center flex-col bg-slate-200">
-          <div className="w-96 text-justify flex flex-col gap-5 ">
-            <p className="  text-sm">
+        <div className="w-full h-[476px] lg:pl-[300px] lg:pr-14 flex items-end lg:items-start justify-center flex-col bg-slate-200">
+          <div className="md:w-96 text-justify flex flex-col gap-5 px-5 md:px-10 lg:px-0 ">
+            <p className="  text-sm text-slate-700 tracking-tight  font-medium ">
               A World of Infinite Stories at Your Fingertips
             </p>
-            <p className=" text-3xl font-black">Welcome to Fable Forge</p>
+            <p className=" ~text-xl/3xl font-black">Welcome to Fable Forge</p>
             <p className="  text-wrap ">
               Step into a world where creativity knows no bounds. Fable Forge is
               an innovative platform for storytellers and adventurers alike,

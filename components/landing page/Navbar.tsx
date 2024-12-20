@@ -17,7 +17,7 @@ const Navbar = () => {
             }`}
           >
             <Image src={Logo} alt="logo" quality={10} className=" w-14" />
-            <p className=" xm:text-2xl font-bold">Fable Forge</p>
+            <p className=" ~text-lg/2xl font-bold">Fable Forge</p>
           </div>
           <div onClick={() => setIsOpen(!isOpen)} className="md:hidden">
             {isOpen ? <X /> : <Menu />}
