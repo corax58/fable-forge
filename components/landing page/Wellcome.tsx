@@ -16,11 +16,14 @@ import React from "react";
 
 const Wellcome = () => {
   return (
-    <section className=" pt-10 md:h-screen w-full bg-slate-200 md:bg-slate-300 flex  items-center">
+    <section
+      id="about"
+      className=" pt-10 md:h-screen w-full bg-slate-200 md:bg-slate-300 flex  items-center"
+    >
       <div className=" h-max  xl:pl-40  w-full flex flex-col md:flex-row">
         <div className="   md:relative h-max md:w-[375px] md:h-[476px] ">
           <div className="md:absolute h-max  md:left-[10%] lg:left-[30%] xl:left-[40%] ">
-            <div className=" overflow-x-scroll gap-5 md:relative  flex h-max md:w-[375px] md:h-[476px]  ">
+            <div className=" overflow-x-scroll no-scrollbar gap-5 md:relative  flex h-max md:w-[375px] md:h-[476px]  ">
               <Image
                 src={wellcome_image_3}
                 alt="welcome image"

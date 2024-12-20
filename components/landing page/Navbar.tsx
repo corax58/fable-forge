@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +24,9 @@ const Navbar = () => {
             {isOpen ? <X /> : <Menu />}
           </div>
 
-          <div className=" hidden  md:flex gap-3 items-center font-semibold">
-            <p>Contact</p>
-            <p>About</p>
+          <div className=" hidden  md:flex gap-5 items-center font-semibold">
+            <Link href="/#contact">Contact</Link>
+            <Link href="/#about">About</Link>
             <Button className="h-min p-2 px-4 rounded-full">Login</Button>
           </div>
         </div>

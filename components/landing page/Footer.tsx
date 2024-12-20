@@ -8,7 +8,10 @@ import { GoMail } from "react-icons/go";
 
 const Footer = () => {
   return (
-    <div className=" w-full  bg-slate-200 flex flex-col justify-center gap-2 pt-10">
+    <section
+      id="contact"
+      className=" w-full  bg-slate-200 flex flex-col justify-center gap-2 pt-10"
+    >
       <div className=" pl-16 xl:pl-28 flex  flex-col md:flex-row gap-10">
         <div className="w-full">
           <div className=" flex gap-3 items-center">
@@ -38,7 +41,7 @@ const Footer = () => {
 
       <div className="w-full h-px bg-slate-400 mt-5"></div>
       <p className="xl:px-28 px-16">© 2024 Abubeker. All rights reserved.</p>
-    </div>
+    </section>
   );
 };
 
