@@ -52,7 +52,7 @@ export function AppSidebar() {
   console.log(path);
   return (
     <div className=" w-max h-max bg-white">
-      <Sidebar className="">
+      <Sidebar className="" collapsible="offcanvas">
         <SidebarHeader className="">
           <div className="flex items-center">
             <Image src={Logo} alt="logo" width={70} height={70} />
@@ -81,7 +81,6 @@ export function AppSidebar() {
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter className="pb-5">
-          {}
           <UserCard />
         </SidebarFooter>
       </Sidebar>
