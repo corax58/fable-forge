@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <div className="w-full h-screen  bg-slate-100">
       <Navbar />
-      {/* <Hero />
-      <Wellcome />
+      <Hero />
+      {/* <Wellcome />
       <Features />
       <Testimonial />
       <CallToAction />

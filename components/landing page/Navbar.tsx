@@ -30,20 +30,14 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className={` gap-2 w-full flex flex-col items-center transition-all ${
-            isOpen ? "h-24" : "h-0"
+          className={` gap-2 w-full flex flex-col  overflow-hidden items-center transition-all ${
+            isOpen ? " h-28" : "h-0"
           }
           `}
         >
-          {isOpen && (
-            <>
-              <p>Contact</p>
-              <p>About</p>
-              <Button className="h-min w-full p-2 px-4 rounded-full">
-                Login
-              </Button>
-            </>
-          )}
+          <p>Contact</p>
+          <p>About</p>
+          <Button className="h-min w-full p-2 px-4 rounded-full">Login</Button>
         </div>
       </div>
     </section>
