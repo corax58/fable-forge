@@ -43,28 +43,31 @@ const StoryPage = ({ params }: Props) => {
       <div className=" w-1/3 flex flex-col gap-5 items-center p-5 ">
         <div className=" flex flex-col w-full  gap-5">
           {data && (
-            <BookMark
-              IsBookMarked={Story.bookmarks.length == 1}
-              storyId={Story.id}
-              userId={data?.user.id}
-            />
+            <>
+              <BookMark
+                IsBookMarked={Story.bookmarks.length == 1}
+                storyId={Story.id}
+                userId={data?.user.id}
+              />
+
+              <Link
+                href={`/stories/${Story.id}/node-editor/?nodeId=${firstNodeId}`}
+                className=""
+              >
+                <Button className=" w-1/2">
+                  <TbHierarchy3 />
+                  Node editor
+                </Button>
+              </Link>
+              <Link href={`/stories/${Story.id}/edit`} className=" w-full ">
+                <Button className="w-1/2">
+                  <FaRegEdit />
+                  Edit
+                </Button>
+              </Link>
+              <DeleteStory storyId={Story.id} />
+            </>
           )}
-          <Link
-            href={`/stories/${Story.id}/node-editor/?nodeId=${firstNodeId}`}
-            className=""
-          >
-            <Button className=" w-1/2">
-              <TbHierarchy3 />
-              Node editor
-            </Button>
-          </Link>
-          <Link href={`/stories/${Story.id}/edit`} className=" w-full ">
-            <Button className="w-1/2">
-              <FaRegEdit />
-              Edit
-            </Button>
-          </Link>
-          <DeleteStory storyId={Story.id} />
         </div>
         <div className=" w-full h-px bg-slate-300"></div>
         <Rating />

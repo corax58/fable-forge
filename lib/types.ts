@@ -14,6 +14,5 @@ export type FetchedNodes = Prisma.NodeGetPayload<{
 export type FetchedStories = Prisma.StoryGetPayload<{
   include: {
     author: true;
-    bookmarks: true;
   };
 }>;

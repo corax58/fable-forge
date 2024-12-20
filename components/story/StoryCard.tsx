@@ -16,10 +16,10 @@ interface Props {
 
 const StoryCard = ({ story }: Props) => {
   return (
-    <div className=" break-inside-avoid-column  flex flex-col w-max h-max p-4 space-y-2 bg-white  rounded-3xl">
+    <div className=" break-inside-avoid-column  flex flex-col w-full h-max p-4 space-y-2 bg-white  rounded-3xl">
       <Link href={`/stories/${story.id}`} className="">
         <div className=" flex flex-col space-y-3 ">
-          <div className=" relative   w-64 h-48">
+          <div className=" relative   w-full h-48">
             <Image
               src={
                 story.imageUrl!
@@ -32,14 +32,14 @@ const StoryCard = ({ story }: Props) => {
               className="w-full h-full object-cover rounded-xl"
             />
           </div>
-          <div className=" truncate   ">
-            <p className=" text-xl  ">{story.title}</p>
+          <div className="      ">
+            <p className=" text-xl  truncate">{story.title}</p>
             <p className=" font-light text-base">
               by <span className=" underline ">{story.author.name}</span>
             </p>
           </div>
           <div className=" w-full flex justify-between ">
-            <Badge status={"jkk"} />
+            <Badge status={story.status} />
           </div>
         </div>
       </Link>

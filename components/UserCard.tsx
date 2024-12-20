@@ -6,11 +6,14 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { ChevronsUpDown, LogIn, LogOut } from "lucide-react";
 import { User as UserType } from "better-auth";
 import { Separator } from "./ui/separator";
 
-const UserCard = () => {
+interface Props {
+  sidebarState: "expanded" | "collapsed";
+}
+const UserCard = ({ sidebarState }: Props) => {
   const session = useSession();
 
   return (
@@ -44,9 +47,18 @@ const UserCard = () => {
           </PopoverContent>
         </Popover>
       ) : (
-        <Button variant="outline" className="w-full">
-          <Link href="/sign-in">Login</Link>
-        </Button>
+        <Link href="/sign-in">
+          <Button variant="outline" className="w-full">
+            {sidebarState === "expanded" ? (
+              <>
+                <LogIn />
+                Login
+              </>
+            ) : (
+              <LogIn />
+            )}
+          </Button>
+        </Link>
       )}
     </div>
   );

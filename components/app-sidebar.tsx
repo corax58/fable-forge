@@ -11,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/public/image";
 import Image from "next/image";
@@ -47,28 +48,30 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const currentPath = usePathname();
-  const path = currentPath.split("/");
-  console.log(path);
+  const { state } = useSidebar();
+  console.log(state);
   return (
     <div className=" w-max h-max bg-white">
-      <Sidebar className="" collapsible="offcanvas">
-        <SidebarHeader className="">
+      <Sidebar className="bg-white" collapsible="icon">
+        <SidebarHeader className="bg-white">
           <div className="flex items-center">
             <Image src={Logo} alt="logo" width={70} height={70} />
-            <p className=" text-lg  p-3 font-semibold">Fable Forge</p>
+            {state == "expanded" && (
+              <p className=" text-lg  p-3 font-semibold">Fable Forge</p>
+            )}
+            {/* <p className=" text-lg  p-3 font-semibold">Fable Forge</p> */}
           </div>
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarContent className="bg-white">
           <SidebarRail />
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
                 {items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton asChild className="hover:bg-gray-100">
                       <a href={item.url}>
-                        <item.icon size={64} />
+                        <item.icon />
                         <span className="font-medium text-base">
                           {item.title}
                         </span>
@@ -80,8 +83,8 @@ export function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter className="pb-5">
-          <UserCard />
+        <SidebarFooter className="bg-white pb-5">
+          <UserCard sidebarState={state} />
         </SidebarFooter>
       </Sidebar>
     </div>
