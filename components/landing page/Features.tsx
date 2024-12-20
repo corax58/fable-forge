@@ -4,7 +4,7 @@ import React from "react";
 
 const Features = () => {
   return (
-    <div className="w-full flex justify-between px-28 py-10 bg-slate-200">
+    <div className="w-full flex flex-col md:flex-row  items-center gap-5 md:justify-between px-5 xl:px-28 py-10 bg-slate-300 md:bg-slate-200">
       <FeatureCard
         featureTitle="Interactive Stories"
         featureText="Experience stories that respond to your choices."
@@ -35,18 +35,19 @@ export const FeatureCard = ({
 }) => {
   return (
     <div className="relative h-max w-max ">
-      <div className="absolute h-full w-full  ">
+      <div className="absolute h-full w-full  z-10 ">
         <div className="rounded-2xl hover:opacity-0 transition-all px-2 flex h-full w-full backdrop-brightness-[.3]  text-white flex-col items-center justify-center text-center">
           <p className=" text-lg font-semibold">{featureTitle}</p>
           <p className="font-light">{featureText}</p>
         </div>
       </div>
+      <div className="retalive  overflow-hidden w-72 h-[450px]  md:w-56  md:h-80 lg:w-72 lg:h-96 xl:w-80 xl:h-[450px] -z-10"></div>
       <Image
-        className=" rounded-2xl "
         src={img}
+        className="rounded-2xl"
         alt="Feature image"
-        width={300}
-        height={286}
+        objectFit="cover"
+        layout="fill"
         quality={100}
       />
     </div>

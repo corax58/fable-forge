@@ -12,8 +12,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Wellcome />
-      {/* <Features />
-      <Testimonial />
+      <Features />
+      {/* <Testimonial />
       <CallToAction />
       <Footer /> */}
     </div>
