@@ -13,8 +13,8 @@ export default function Home() {
       <Hero />
       <Wellcome />
       <Features />
-      {/* <Testimonial />
-      <CallToAction />
+      <Testimonial />
+      {/* <CallToAction />
       <Footer /> */}
     </div>
   );
