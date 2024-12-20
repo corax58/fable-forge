@@ -14,8 +14,8 @@ export default function Home() {
       <Wellcome />
       <Features />
       <Testimonial />
-      {/* <CallToAction />
-      <Footer /> */}
+      <CallToAction />
+      {/* <Footer /> */}
     </div>
   );
 }
