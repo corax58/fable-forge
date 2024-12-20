@@ -15,7 +15,7 @@ export default function Home() {
       <Features />
       <Testimonial />
       <CallToAction />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
