@@ -3,6 +3,7 @@ import Image from "next/image";
 import { heroImage } from "@/public/image";
 import { Button } from "../ui/button";
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -18,13 +19,17 @@ const Hero = () => {
               others. Every choice is yours to make.
             </p>
             <div className="flex gap-5">
-              <Button className=" rounded-full bg-white text-black hover:bg-white group hover:text-base">
-                <Search className="text-black " />
-                Explore Stories
-              </Button>
-              <Button className="rounded-full bg-black text-white hover:bg-black  hover:text-base">
-                Sign in
-              </Button>
+              <Link href="/stories" className="w-min">
+                <Button className=" rounded-full bg-white text-black hover:bg-neutral-200 hover:scale-100 group ">
+                  <Search className="text-black " />
+                  Explore Stories
+                </Button>
+              </Link>
+              <Link className="w-min" href="/sign-in">
+                <Button className="rounded-full bg-black text-white hover:bg-neutral-900  ">
+                  Sign in
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

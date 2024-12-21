@@ -35,7 +35,7 @@ export default function SignIn() {
                 console.log("hello");
                 await signIn.social({
                   provider: "google",
-                  callbackURL: "/",
+                  callbackURL: "/stories",
                 });
               }}
             >

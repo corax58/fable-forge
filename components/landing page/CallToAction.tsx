@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const CallToAction = () => {
   return (
@@ -8,7 +9,9 @@ const CallToAction = () => {
       <p className=" ~text-base/3xl font-light">
         Join a community of 10,000 storytellers!
       </p>
-      <Button className=" rounded-full">Begin Your Journey</Button>
+      <Link className="w-min" href="/sign-in">
+        <Button className=" rounded-full">Begin Your Journey</Button>
+      </Link>
     </div>
   );
 };

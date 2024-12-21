@@ -27,7 +27,9 @@ const Navbar = () => {
           <div className=" hidden  md:flex gap-5 items-center font-semibold">
             <Link href="/#contact">Contact</Link>
             <Link href="/#about">About</Link>
-            <Button className="h-min p-2 px-4 rounded-full">Login</Button>
+            <Link href="/login">
+              <Button className="h-min p-2 px-4 rounded-full">Login</Button>
+            </Link>
           </div>
         </div>
         <div
