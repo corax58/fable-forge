@@ -1,13 +1,12 @@
 "use client";
-import Spinner from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
 import { useFetchNode } from "@/hooks/nodes/useFetchNode";
 import { firstNodeImage } from "@/public/image";
+import { LoaderCircle } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import NodeView from "../_components/NodeView";
 import NodeForm from "./components/NodeForm";
-import { LoaderCircle } from "lucide-react";
 
 interface Props {
   params: {
@@ -44,7 +43,6 @@ const NodeEditorPage = ({ params, searchParams: { nodeId } }: Props) => {
 
   const { data: Node, isLoading, error } = useFetchNode(nodeId);
 
-  console.log("the node", Node);
   if (isLoading)
     return (
       <div className="w-full flex pt-20 justify-center">

@@ -1,19 +1,18 @@
 "use client";
+import ErrorMessage from "@/components/ErrorMessage";
+import ColorPicker from "@/components/story/ColorPicker";
+import StoryIntroPreview from "@/components/story/StoryIntroPreview";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import UploadWidget from "@/components/UploadWidget";
 import { useCreateStory } from "@/hooks/stories/useCreateStory";
 import { Story } from "@prisma/client";
 import "easymde/dist/easymde.min.css";
+import { LoaderCircle } from "lucide-react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import ColorPicker from "@/components/story/ColorPicker";
-import Spinner from "@/components/Spinner";
-import ErrorMessage from "@/components/ErrorMessage";
-import StoryIntroPreview from "@/components/story/StoryIntroPreview";
 import { useUpdateStory } from "../../hooks/stories/useUpdateStory";
 import MarkDownEditor from "../MarkDownEditor";
-import { LoaderCircle } from "lucide-react";
 
 const StoryForm = ({ Story }: { Story?: Story }) => {
   const formElementClassName = " flex space-y-2 flex-col  ";

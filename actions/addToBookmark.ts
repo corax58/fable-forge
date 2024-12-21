@@ -18,6 +18,5 @@ export async function addToBookmarks(userId: string, storyId: string) {
       userId,
     },
   });
-  console.log("added to bookmarks");
   return;
 }

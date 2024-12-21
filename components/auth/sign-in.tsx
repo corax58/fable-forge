@@ -32,7 +32,6 @@ export default function SignIn() {
               variant="outline"
               className={cn("w-full gap-2")}
               onClick={async () => {
-                console.log("hello");
                 await signIn.social({
                   provider: "google",
                   callbackURL: "/stories",

@@ -1,13 +1,9 @@
 "use client";
+import { FetchedStories } from "@/lib/types";
+import noImage from "@/public/image/no_image.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import noImage from "@/public/image/no_image.jpg";
-import { FetchedStories } from "@/lib/types";
-import { Bookmark, BookmarkCheck, BookmarkIcon } from "lucide-react";
 import Badge from "../Badge";
-import BookMark from "../Bookmark";
-import { useSession } from "@/lib/auth-client";
 
 interface Props {
   story: FetchedStories;

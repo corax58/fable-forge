@@ -1,7 +1,7 @@
 "use client";
-import useFetchBookmarks from "@/hooks/bookmark/useFetchBookmarks";
-import StoryCard from "@/components/story/StoryCard";
 import ErrorMessage from "@/components/ErrorMessage";
+import StoryCard from "@/components/story/StoryCard";
+import useFetchBookmarks from "@/hooks/bookmark/useFetchBookmarks";
 import { LoaderCircle } from "lucide-react";
 
 const BookmarksPage = () => {

@@ -3,7 +3,6 @@ import { addToBookmarks } from "@/actions/addToBookmark";
 import { removeFromBookmark } from "@/actions/removerFromBookmark";
 import { BookmarkIcon } from "lucide-react";
 import { useState } from "react";
-import { Button } from "./ui/button";
 
 interface Props {
   storyId: string;

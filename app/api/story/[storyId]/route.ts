@@ -86,7 +86,6 @@ export async function PATCH(
 ) {
   const data = await request.json();
   const validation = storySchema.safeParse(data);
-  console.log(data);
 
   if (!validation.success) {
     return NextResponse.json(

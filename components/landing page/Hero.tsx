@@ -1,9 +1,8 @@
-import React from "react";
-import Image from "next/image";
 import { heroImage } from "@/public/image";
-import { Button } from "../ui/button";
 import { Search } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const Hero = () => {
   return (

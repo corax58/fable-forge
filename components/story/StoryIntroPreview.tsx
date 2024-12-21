@@ -1,8 +1,7 @@
 import { Story } from "@prisma/client";
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
+import { GoArrowRight } from "react-icons/go";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   story: Story;

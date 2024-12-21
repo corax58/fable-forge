@@ -1,18 +1,17 @@
 "use client";
-import React from "react";
-import { FaTrashAlt } from "react-icons/fa";
-import { useDeleteStory } from "../../hooks/stories/useDeleteStory";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
-  DialogFooter,
-  DialogHeader,
   DialogContent,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { FaTrashAlt } from "react-icons/fa";
+import { useDeleteStory } from "../../hooks/stories/useDeleteStory";
 
 interface Props {
   storyId: string;

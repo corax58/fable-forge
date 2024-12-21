@@ -1,6 +1,5 @@
 import axiosInstance from "@/lib/axiosInstance";
 import { FetchedStories } from "@/lib/types";
-import prisma from "@/prisma/db";
 import { useQuery } from "@tanstack/react-query";
 
 const useFetchStories = () => {

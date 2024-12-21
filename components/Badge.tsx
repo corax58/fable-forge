@@ -1,5 +1,3 @@
-import React from "react";
-
 const Badge = ({ status }: { status: string }) => {
   if (status == "InProgress")
     return (

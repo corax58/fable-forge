@@ -2,8 +2,8 @@
 import ErrorMessage from "@/components/ErrorMessage";
 import StoryCard from "@/components/story/StoryCard";
 import useFetchStories from "@/hooks/stories/useFetchStories";
-import CreateStory from "./_components/CreateStory";
 import { LoaderCircle } from "lucide-react";
+import CreateStory from "./_components/CreateStory";
 
 const MyStoriesPage = () => {
   const { data: stories, error, isPending } = useFetchStories();

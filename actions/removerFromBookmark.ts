@@ -17,6 +17,5 @@ export async function removeFromBookmark(userId: string, storyId: string) {
       id: alreadyBookmarked.id,
     },
   });
-  console.log("removed from bookmarks");
   return;
 }

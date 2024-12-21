@@ -59,7 +59,6 @@ export async function PATCH(
   const data = await request.json();
   const validation = nodeSchema.safeParse(data);
 
-  console.log("hello", data);
   if (validation.error) {
     console.log("error");
     console.log(validation.error);
@@ -82,7 +81,6 @@ export async function PATCH(
       data,
     });
 
-    console.log(node, editedNode);
     return NextResponse.json({});
   } catch (error) {
     console.log(error);

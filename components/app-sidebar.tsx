@@ -1,5 +1,4 @@
 "use client";
-import { Bookmark, LibraryBig, Notebook, Search, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -14,10 +13,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/public/image";
+import { Bookmark, LibraryBig, Notebook, Search, Settings } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import UserCard from "./UserCard";
-import classnames from "classnames";
 // Menu items.
 const items = [
   {
@@ -49,7 +47,6 @@ const items = [
 
 export function AppSidebar() {
   const { state } = useSidebar();
-  console.log(state);
   return (
     <div className=" w-max h-max bg-white">
       <Sidebar className="bg-white" collapsible="icon">

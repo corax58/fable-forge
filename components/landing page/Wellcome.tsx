@@ -3,16 +3,8 @@ import {
   wellcome_image_2,
   wellcome_image_3,
 } from "@/public/image";
-import {
-  BookCheck,
-  BookUser,
-  Library,
-  LibraryBig,
-  LibraryBigIcon,
-  Pointer,
-} from "lucide-react";
+import { LibraryBig, Pointer } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
 const Wellcome = () => {
   return (

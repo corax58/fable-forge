@@ -1,18 +1,16 @@
 "use client";
-import StoryIntroPreview from "@/components/story/StoryIntroPreview";
-import DeleteStory from "@/components/story/DeleteStory";
+import BookMark from "@/components/Bookmark";
 import Rating from "@/components/Rating";
+import DeleteStory from "@/components/story/DeleteStory";
+import StoryIntroPreview from "@/components/story/StoryIntroPreview";
 import { Button } from "@/components/ui/button";
-import prisma from "@/prisma/db";
+import useFetchASingleStory from "@/hooks/stories/useFetchASingleStory";
+import { useSession } from "@/lib/auth-client";
+import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaRegEdit } from "react-icons/fa";
 import { TbHierarchy3 } from "react-icons/tb";
-import useFetchASingleStory from "@/hooks/stories/useFetchASingleStory";
-import BookMark from "@/components/Bookmark";
-import { useSession } from "@/lib/auth-client";
-import { LoaderCircle } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface Props {
   params: {
@@ -34,8 +32,6 @@ const StoryPage = ({ params }: Props) => {
       </div>
     );
   if (!Story) notFound();
-
-  console.log(Story);
 
   let firstNodeId = "";
 

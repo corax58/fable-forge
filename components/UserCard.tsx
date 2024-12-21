@@ -15,7 +15,6 @@ interface Props {
 }
 const UserCard = ({ sidebarState }: Props) => {
   const session = useSession();
-  console.log(session);
 
   return (
     <div>

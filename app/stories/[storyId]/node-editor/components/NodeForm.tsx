@@ -1,26 +1,23 @@
 "use client";
 import MarkDownEditor from "@/components/MarkDownEditor";
-import UploadWidget from "@/components/UploadWidget";
-import { Node } from "@prisma/client";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Node } from "@prisma/client";
 
-import React, { ReactNode, useEffect, useState } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import ErrorMessage from "@/components/ErrorMessage";
+import Spinner from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCreateNode } from "@/hooks/nodes/useCreateNode";
-import Spinner from "@/components/Spinner";
-import ErrorMessage from "@/components/ErrorMessage";
-import { boolean } from "zod";
-import { useToast } from "@/hooks/toast/use-toast";
 import { useUpdateNode } from "@/hooks/nodes/useUpdateNode";
+import { useToast } from "@/hooks/toast/use-toast";
+import { ReactNode, useEffect, useState } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 interface Props {
   storyId: string;

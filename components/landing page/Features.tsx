@@ -1,6 +1,5 @@
 import { Feature_1, Feature_2, Feature_3 } from "@/public/image";
 import Image, { StaticImageData } from "next/image";
-import React from "react";
 
 const Features = () => {
   return (
