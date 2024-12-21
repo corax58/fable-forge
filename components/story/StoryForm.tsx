@@ -13,6 +13,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 import StoryIntroPreview from "@/components/story/StoryIntroPreview";
 import { useUpdateStory } from "../../hooks/stories/useUpdateStory";
 import MarkDownEditor from "../MarkDownEditor";
+import { LoaderCircle } from "lucide-react";
 
 const StoryForm = ({ Story }: { Story?: Story }) => {
   const formElementClassName = " flex space-y-2 flex-col  ";
@@ -56,9 +57,9 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
   };
 
   return (
-    <div className="flex gap-5 ">
+    <div className="flex flex-col lg:flex-row gap-5 ">
       <form
-        className="  w-1/2 pb-10   flex flex-col space-y-3 "
+        className="  w-full pb-10   flex flex-col space-y-3 "
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className={formElementClassName}>
@@ -99,7 +100,7 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
           )}
         </div>
         <div className={formElementClassName}>
-          <div className=" flex  space-x-4">
+          <div className=" flex  flex-col md:flex-row gap-4">
             <ColorPicker
               handleColor={handleColor}
               isPrimary={true}
@@ -133,7 +134,7 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
 
         <Button className=" btn btn-secondary" disabled={updateStory.isPending}>
           {updateStory.isPending || createStory.isPending ? (
-            <Spinner />
+            <LoaderCircle className="animate-spin text-slate-500" />
           ) : Story ? (
             <p>Edit Story</p>
           ) : (
@@ -141,7 +142,7 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
           )}
         </Button>
       </form>
-      <div className="w-1/2">
+      <div className="w-full">
         <StoryIntroPreview story={watch()} />
       </div>
     </div>

@@ -21,7 +21,7 @@ const StoryIntroPreview = ({ story, firstNodeId }: Props) => {
         backgroundColor: story.primaryColor!,
       }}
     >
-      <p className=" text-3xl font-bold">{story.title}</p>
+      <p className=" text-3xl font-bold break-words">{story.title}</p>
       <div
         className=" h-px w-full "
         style={{ backgroundColor: story.secondaryColor! }}
