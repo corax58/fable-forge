@@ -26,8 +26,10 @@ const UserCard = ({ sidebarState }: Props) => {
               variant={"outline"}
               className="flex items-center justify-between p-2  h-min  w-full "
             >
-              <User user={session.data.user} />
-              <ChevronsUpDown strokeWidth={1} size={20} />
+              <User user={session.data.user} sidebarState={sidebarState} />
+              {sidebarState === "expanded" && (
+                <ChevronsUpDown strokeWidth={1} size={20} />
+              )}
             </Button>
           </PopoverTrigger>
           <PopoverContent
@@ -65,7 +67,13 @@ const UserCard = ({ sidebarState }: Props) => {
   );
 };
 
-const User = ({ user }: { user: UserType }) => {
+const User = ({
+  user,
+  sidebarState,
+}: {
+  user: UserType;
+  sidebarState?: string;
+}) => {
   return (
     <div className="flex gap-2 items-center  ">
       <Image
@@ -76,10 +84,12 @@ const User = ({ user }: { user: UserType }) => {
         className=" rounded-md"
         quality={100}
       />
-      <div className="flex flex-col items-start">
-        <p className="font-medium h-min">{user.name}</p>
-        <p className=" font-light text-xs ">{user.email}</p>
-      </div>
+      {(!sidebarState || sidebarState === "expanded") && (
+        <div className="flex flex-col items-start">
+          <p className="font-medium h-min">{user.name}</p>
+          <p className=" font-light text-xs ">{user.email}</p>
+        </div>
+      )}
     </div>
   );
 };
