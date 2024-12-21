@@ -11,6 +11,8 @@ import { TbHierarchy3 } from "react-icons/tb";
 import useFetchASingleStory from "@/hooks/stories/useFetchASingleStory";
 import BookMark from "@/components/Bookmark";
 import { useSession } from "@/lib/auth-client";
+import { LoaderCircle } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Props {
   params: {
@@ -25,7 +27,12 @@ const StoryPage = ({ params }: Props) => {
   } = useFetchASingleStory(params.storyId);
   const { data } = useSession();
 
-  if (isLoading) return <p>Is Loading</p>;
+  if (isLoading)
+    return (
+      <div className="w-full flex pt-20 justify-center">
+        <LoaderCircle className="animate-spin text-slate-500" size={35} />
+      </div>
+    );
   if (!Story) notFound();
 
   console.log(Story);

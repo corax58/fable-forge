@@ -2,11 +2,17 @@
 import useFetchBookmarks from "@/hooks/bookmark/useFetchBookmarks";
 import StoryCard from "@/components/story/StoryCard";
 import ErrorMessage from "@/components/ErrorMessage";
+import { LoaderCircle } from "lucide-react";
 
 const BookmarksPage = () => {
   const { data: stories, error, isPending } = useFetchBookmarks();
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <div className="w-full flex pt-20 justify-center">
+        <LoaderCircle className="animate-spin text-slate-500" size={35} />
+      </div>
+    );
 
   if (error) return <ErrorMessage text="Error please try again" />;
 

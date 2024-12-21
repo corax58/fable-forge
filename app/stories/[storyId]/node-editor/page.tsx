@@ -7,6 +7,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import NodeView from "../_components/NodeView";
 import NodeForm from "./components/NodeForm";
+import { LoaderCircle } from "lucide-react";
 
 interface Props {
   params: {
@@ -46,8 +47,8 @@ const NodeEditorPage = ({ params, searchParams: { nodeId } }: Props) => {
   console.log("the node", Node);
   if (isLoading)
     return (
-      <div className="w-full h-full flex justify-center items-center">
-        <Spinner />
+      <div className="w-full flex pt-20 justify-center">
+        <LoaderCircle className="animate-spin text-slate-500" size={35} />
       </div>
     );
   if (!Node) return notFound();
