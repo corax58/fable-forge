@@ -20,10 +20,10 @@ const NodeView = ({ node, editable }: Props) => {
     : `/stories/${node.storyId}/read?nodeId=${node.previousNodeId}`;
 
   return (
-    <div className="flex w-full h-full gap-5 justify-center">
+    <div className="flex flex-col-reverse lg:flex-row w-full h-full gap-5 justify-center">
       {" "}
       <div
-        className=" w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
+        className=" lg:w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
         style={{
           color: node.story.secondaryColor!,
           borderColor: node.story.secondaryColor!,
@@ -106,7 +106,7 @@ const NodeView = ({ node, editable }: Props) => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-4 items-center h-96 w-max">
+      <div className="flex lg:flex-col gap-4 items-center h-min  w-max">
         <Button className="w-full">
           <Link href={backLink}>Go Back</Link>
         </Button>
@@ -119,15 +119,15 @@ const NodeView = ({ node, editable }: Props) => {
               Node={currentNode}
               currentNodeId={node.id}
             >
-              <Button className=" w-48">
+              <Button className=" w-full">
                 <FaRegEdit />
-                Edit this node
+                <span className="hidden md:block">Edit this node</span>
               </Button>
             </NodeForm>
             <DeleteNodeButton nodeId={node.id}>
-              <Button className=" w-full" variant={"destructive"}>
+              <Button className=" w-max" variant={"destructive"}>
                 <FaTrashAlt className=" w-28 font-bold" />
-                <span>Delete this node</span>
+                <span className="hidden md:block">Delete this node</span>
               </Button>
             </DeleteNodeButton>
           </>

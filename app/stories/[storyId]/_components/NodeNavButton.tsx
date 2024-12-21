@@ -11,13 +11,15 @@ interface Props {
 const NodeNavButton = ({ children, colors }: Props) => {
   return (
     <button
-      className="break-words hover:scale-105 hover:shadow-md  transition-all border-2 rounded-full p-1  pl-4 space-x-2 flex items-center justify-center w-max h-max"
+      className=" break-words text-wrap hover:scale-105 hover:shadow-md  transition-all border-2 rounded-md md:rounded-full p-1  md:pl-4 space-x-2 flex items-center justify-center w-full h-max"
       style={{
         borderColor: colors.secondaryColor!,
         color: colors.secondaryColor!,
       }}
     >
-      <p className=" font-semibold text-lg break-words text-wrap">{children}</p>
+      <p className=" font-semibold text-lg break-all w-full text-wrap">
+        {children}
+      </p>
       <div
         className="  rounded-full p-px"
         style={{ backgroundColor: colors.secondaryColor! }}
