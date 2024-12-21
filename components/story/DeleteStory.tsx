@@ -22,9 +22,9 @@ const DeleteStory = ({ storyId }: Props) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-1/2">
+        <Button className="w-min" variant="destructive">
           <FaTrashAlt />
-          Delete
+          <span className="hidden md:block">Delete</span>
         </Button>
       </DialogTrigger>
       <DialogContent>

@@ -26,6 +26,7 @@ const BookMark = ({ storyId, userId, IsBookMarked }: Props) => {
       }}
       fill={isChecked ? "red" : "white"}
       strokeWidth={isChecked ? 0 : 2}
+      className="size-8 cursor-pointer"
     />
   );
 };

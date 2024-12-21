@@ -43,12 +43,12 @@ const StoryPage = ({ params }: Props) => {
     firstNodeId = Story.nodes[0].id;
   }
   return (
-    <div className=" flex gap-5 py-5">
-      <div className=" w-2/3 ">
+    <div className=" flex flex-col-reverse lg:flex-row gap-5 py-5">
+      <div className=" w-full lg:w-2/3 ">
         <StoryIntroPreview story={Story} firstNodeId={firstNodeId} />
       </div>
-      <div className=" w-1/3 flex flex-col gap-5 items-center p-5 ">
-        <div className=" flex flex-col w-full  gap-5">
+      <div className=" lg:w-1/3 flex flex-col gap-5 items-center lg:p-5 ">
+        <div className=" flex lg:flex-col lg:items-start items-center justify-between w-full   gap-5">
           {data && (
             <>
               <BookMark
@@ -59,17 +59,17 @@ const StoryPage = ({ params }: Props) => {
 
               <Link
                 href={`/stories/${Story.id}/node-editor/?nodeId=${firstNodeId}`}
-                className=""
+                className="w-min"
               >
-                <Button className=" w-1/2">
+                <Button className=" w-min">
                   <TbHierarchy3 />
-                  Node editor
+                  <span className="hidden md:block">Node editor</span>
                 </Button>
               </Link>
-              <Link href={`/stories/${Story.id}/edit`} className=" w-full ">
-                <Button className="w-1/2">
+              <Link href={`/stories/${Story.id}/edit`} className=" w-min ">
+                <Button className="w-min">
                   <FaRegEdit />
-                  Edit
+                  <span className="hidden md:block">Edit</span>
                 </Button>
               </Link>
               <DeleteStory storyId={Story.id} />
@@ -77,7 +77,9 @@ const StoryPage = ({ params }: Props) => {
           )}
         </div>
         <div className=" w-full h-px bg-slate-300"></div>
-        <Rating />
+        <div className=" hidden lg:block">
+          <Rating />
+        </div>
       </div>
     </div>
   );
