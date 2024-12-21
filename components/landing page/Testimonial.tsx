@@ -17,10 +17,9 @@ const Testimonial = () => {
         </Marquee>
         <Image
           src={Reviews}
-          className="absolute -z-10 brightness-50"
+          className="absolute -z-10 object-cover brightness-50"
           alt="review background"
-          layout="fill"
-          objectFit="cover"
+          fill
         />
       </div>
     </div>

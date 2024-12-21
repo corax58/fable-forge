@@ -43,10 +43,9 @@ export const FeatureCard = ({
       <div className="retalive  overflow-hidden w-72 h-[450px]  md:w-56  md:h-80 lg:w-72 lg:h-96 xl:w-80 xl:h-[450px] -z-10"></div>
       <Image
         src={img}
-        className="rounded-2xl"
+        className="rounded-2xl object-cover "
         alt="Feature image"
-        objectFit="cover"
-        layout="fill"
+        fill
         quality={100}
       />
     </div>
