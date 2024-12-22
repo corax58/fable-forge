@@ -1,4 +1,5 @@
 "use client";
+import { ErrorMessage } from "@/components";
 import BookMark from "@/components/Bookmark";
 import Rating from "@/components/Rating";
 import DeleteStory from "@/components/story/DeleteStory";
@@ -31,7 +32,9 @@ const StoryPage = ({ params }: Props) => {
         <LoaderCircle className="animate-spin text-slate-500" size={35} />
       </div>
     );
-  if (!Story) notFound();
+  if (error) return <ErrorMessage text="Something went wrong." />;
+
+  if (!Story) return notFound();
 
   let firstNodeId = "";
 

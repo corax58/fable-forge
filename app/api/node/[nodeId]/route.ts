@@ -27,7 +27,10 @@ export async function GET(
     }
 
     return NextResponse.json(node, { status: 200 });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ error: "Something happened" }, { status: 500 });
+  }
 }
 
 export async function DELETE(
@@ -81,7 +84,7 @@ export async function PATCH(
       data,
     });
 
-    return NextResponse.json({});
+    return NextResponse.json(editedNode, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error: "Error occured" }, { status: 500 });
