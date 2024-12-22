@@ -52,7 +52,11 @@ const StoryForm = ({ Story }: { Story?: Story }) => {
 
   const onSubmit: SubmitHandler<Story> = async (data, e) => {
     e?.preventDefault();
-    Story ? updateStory.mutate(data) : createStory.mutate(data);
+    if (Story) {
+      updateStory.mutate(data);
+    } else {
+      createStory.mutate(data);
+    }
   };
 
   return (

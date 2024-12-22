@@ -2,7 +2,7 @@ import { Node } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-export const useUpdateNode = (nodeId: string, currentNodeId?: string) => {
+export const useUpdateNode = (nodeId?: string, currentNodeId?: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({

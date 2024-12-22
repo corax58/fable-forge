@@ -1,9 +1,12 @@
-import React from "react";
 import "easymde/dist/easymde.min.css";
-import SimpleMDE from "react-simplemde-editor";
 import { ControllerRenderProps } from "react-hook-form";
-import { Story } from "@prisma/client";
+import dynamic from "next/dynamic";
 
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface Props {
   field: ControllerRenderProps<any>;
   id: string;

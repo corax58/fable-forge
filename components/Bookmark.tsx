@@ -14,7 +14,7 @@ const BookMark = ({ storyId, userId, IsBookMarked }: Props) => {
 
   return (
     <BookmarkIcon
-      onClick={(even: React.MouseEvent) => {
+      onClick={() => {
         if (isChecked) {
           removeFromBookmark(userId, storyId);
           setIsChecked(false);

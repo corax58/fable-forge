@@ -1,4 +1,3 @@
-import prisma from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 export type FetchedNodes = Prisma.NodeGetPayload<{
   include: {

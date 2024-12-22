@@ -53,9 +53,7 @@ const NodeForm = ({
 
   const createNode = useCreateNode();
 
-  const updateNode = Node?.id
-    ? useUpdateNode(Node?.id!, currentNodeId)
-    : useCreateNode();
+  const updateNode = useUpdateNode(Node?.id, currentNodeId);
 
   const onSubmit: SubmitHandler<Node> = async (data, e) => {
     e?.preventDefault();

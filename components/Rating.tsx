@@ -52,12 +52,12 @@ const StarsBar = ({ percentage }: { percentage: number }) => {
   return (
     <div>
       <div className=" flex gap-1">
-        {Array.from({ length: yellow }, (index) => (
-          <LiaStarSolid className=" text-yellow-400" />
+        {Array.from({ length: yellow }, (_, index) => (
+          <LiaStarSolid className=" text-yellow-400" key={index} />
         ))}
 
-        {Array.from({ length: 5 - yellow }, (index) => (
-          <LiaStarSolid className=" text-gray-400" />
+        {Array.from({ length: 5 - yellow }, (_, index) => (
+          <LiaStarSolid className=" text-gray-400" key={index} />
         ))}
       </div>
     </div>

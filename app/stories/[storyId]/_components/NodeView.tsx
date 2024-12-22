@@ -25,33 +25,33 @@ const NodeView = ({ node, editable }: Props) => {
       <div
         className=" lg:w-2/3 h-full border-2 rounded-xl p-4 flex flex-col space-y-2"
         style={{
-          color: node.story.secondaryColor!,
-          borderColor: node.story.secondaryColor!,
-          backgroundColor: node.story.primaryColor!,
+          color: story.secondaryColor!,
+          borderColor: story.secondaryColor!,
+          backgroundColor: story.primaryColor!,
         }}
       >
         <p className=" text-3xl font-bold">{node.title}</p>
         <div
           className=" h-px w-full "
-          style={{ backgroundColor: node.story.secondaryColor! }}
+          style={{ backgroundColor: story.secondaryColor! }}
         ></div>
         {node.imageLink && (
           <img src={node.imageLink} alt="image" className=" rounded-2xl" />
         )}
         <div
           className=" h-px w-full "
-          style={{ backgroundColor: node.story.secondaryColor! }}
+          style={{ backgroundColor: story.secondaryColor! }}
         ></div>
 
         <div
           className="prose !max-w-none w-full h-max "
-          style={{ color: node.story.secondaryColor! }}
+          style={{ color: story.secondaryColor! }}
         >
           <ReactMarkdown className={"w-full"}>{node.text}</ReactMarkdown>
         </div>
         <div className="  h-5 w-full"></div>
         <div className="w-full flex justify-center items-center flex-col gap-2 ">
-          {node.nextNodes.map((nextNode) => (
+          {nextNodes.map((nextNode) => (
             <div className="flex gap-2 items-center " key={nextNode.id}>
               {editable && (
                 <DeleteNodeButton nodeId={nextNode.id}>
@@ -72,8 +72,8 @@ const NodeView = ({ node, editable }: Props) => {
               >
                 <NodeNavButton
                   colors={{
-                    primaryColor: node.story.primaryColor!,
-                    secondaryColor: node.story.secondaryColor!,
+                    primaryColor: story.primaryColor!,
+                    secondaryColor: story.secondaryColor!,
                   }}
                 >
                   {nextNode.title}

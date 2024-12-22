@@ -3,7 +3,7 @@ import { useFetchNode } from "@/hooks/nodes/useFetchNode";
 import { LoaderCircle } from "lucide-react";
 import { notFound } from "next/navigation";
 import NodeView from "../_components/NodeView";
-import { ErrorMessage } from "@/components";
+import ErrorMessage from "@/components/ErrorMessage";
 
 const ReadNodesPage = ({
   searchParams: { nodeId },

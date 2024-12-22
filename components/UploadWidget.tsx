@@ -1,7 +1,5 @@
 "use client";
-import React from "react";
 import { CldUploadWidget } from "next-cloudinary";
-import { Button } from "@/components/ui/button";
 
 interface Props {
   handleImage: (public_id: string) => void;

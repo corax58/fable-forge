@@ -1,13 +1,11 @@
 "use client";
-import React from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { noImage } from "@/public/image";
-import Image from "next/image";
-import { Button } from "./ui/button";
 import { signOut, useSession } from "@/lib/auth-client";
-import Link from "next/link";
-import { ChevronsUpDown, LogIn, LogOut } from "lucide-react";
 import { User as UserType } from "better-auth";
+import { ChevronsUpDown, LogIn, LogOut } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "./ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Separator } from "./ui/separator";
 
 interface Props {
