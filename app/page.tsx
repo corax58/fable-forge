@@ -13,7 +13,7 @@ export default function Home() {
     <div className="w-full h-screen  bg-slate-100">
       <Navbar />
       <Hero />
-      ss
+      
       <Wellcome />
       <Features />
       <Testimonial />
