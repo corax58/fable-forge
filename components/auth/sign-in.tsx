@@ -41,12 +41,16 @@ export default function SignIn() {
  await signIn.social({
                   provider: "google",
                   callbackURL: "/stories",
-                }).then(()=>{setError(false);setIsSigningIn(false)}).catch((erorr)=>{
+                }).then(()=>{
+                  setError(false);
+                  console.log("works")
+                  setIsSigningIn(false)}).catch((erorr)=>{
                   console.log("Error")
                   console.log({error:erorr});
                   setError(true)
                   setIsSigningIn(false)
-                  
+
+
                 });
                 }catch(e){
 console.log(e)
