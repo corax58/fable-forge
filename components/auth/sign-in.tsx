@@ -15,7 +15,7 @@ export default function SignIn() {
   const [isSigningin, setIsSigningIn] = useState(false);
   const [error,setError]= useState(false)
   return (
-    <Card className="w-96">
+    <Card className="w-96 bg-white">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
         {error&&<p className="text-red-400 font-medium">Something went wrong, please try again.</p>}
