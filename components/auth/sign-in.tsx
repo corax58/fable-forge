@@ -37,7 +37,8 @@ export default function SignIn() {
               onClick={async () => {
                 setIsSigningIn(true)
                 setError(false)
-                await signIn.social({
+                try{
+ await signIn.social({
                   provider: "google",
                   callbackURL: "/stories",
                 }).then(()=>{setError(false);setIsSigningIn(false)}).catch((erorr)=>{
@@ -45,7 +46,12 @@ export default function SignIn() {
                   console.log({error:erorr});
                   setError(true)
                   setIsSigningIn(false)
+                  
                 });
+                }catch(e){
+console.log(e)
+                }
+               
               }}
             >
               {
