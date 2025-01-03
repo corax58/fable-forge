@@ -41,7 +41,8 @@ export default function SignIn() {
                   provider: "google",
                   callbackURL: "/stories",
                 }).then(()=>{setError(false);setIsSigningIn(false)}).catch((erorr)=>{
-                  console.log(erorr);
+                  console.log("Error")
+                  console.log({error:erorr});
                   setError(true)
                   setIsSigningIn(false)
                 });
