@@ -2,6 +2,9 @@ import StoryCard from "@/components/story/StoryCard";
 import prisma from "@/prisma/db";
 import { FetchedStories } from "@/lib/types";
 
+
+export const dynamic = "force-dynamic";
+
 // Fetch stories from the database
 async function fetchStories(): Promise<FetchedStories[]> {
   const Stories = await prisma.story.findMany({
